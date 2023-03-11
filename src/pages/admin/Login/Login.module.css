@@ -1,0 +1,113 @@
+.formContainer {
+  background-color: var(--light-1);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  /* @include tablet {
+    width: 100%;
+    padding: 0 1rem;
+  } */
+}
+
+.imgWrapper {
+  flex: 1;
+}
+
+.formWrapper {
+  flex: 1.5;
+  height: 20rem;
+  background: linear-gradient(
+    180deg,
+    rgba(234, 255, 247, 0.3186) 0%,
+    rgba(67, 255, 242, 0.368691) 60.94%,
+    rgba(0, 255, 240, 0.3888) 100%
+  );
+  background-color: var(--dark-2);
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 1.25rem 3.75rem;
+  border-radius: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+
+  /* @include tablet {
+    width: 100%;
+  }
+ */
+}
+
+.logo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.title {
+  color: #fff;
+  font-size: 0.625rem;
+}
+
+.formWrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formWrapper form input {
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid gray;
+  border-radius: 0.5rem;
+}
+.formWrapper form input::placeholder {
+  color: rgb(175, 175, 175);
+}
+
+.formWrapper form label {
+  display: flex;
+  font-size: 0.75rem;
+  align-items: center;
+  gap: 0.625rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.formWrapper form button {
+  background-color: #04ff87;
+  border-radius: 0.5rem;
+  padding: 0.625rem;
+  font-weight: bold;
+  border: none;
+  color: rgb(32, 65, 45);
+  cursor: pointer;
+}
+
+.formWrapper form p {
+  color: #5d5b8d;
+  font-size: 0.75rem;
+  margin-top: 0.625rem;
+}
+.formWrapper form a {
+  text-decoration: none;
+}
+
+.error {
+  color: rgb(211, 73, 73);
+  text-align: center;
+  font-size: small;
+}
+
+@media (max-width: 860px) {
+  .formContainer {
+    height: 100vh;
+    padding: 0 1rem;
+  }
+
+  .formWrapper {
+    width: 100%;
+  }
+}

@@ -1,0 +1,31 @@
+.messageSection {
+  position: relative;
+  width: 100%;
+  background-color: var(--dark-2);
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  height: 100%;
+}
+
+.messageSection h1 {
+  color: rgb(80, 80, 80);
+  color: #fff;
+}
+
+.container {
+  /* background-color: red; */
+  position: relative;
+  display: flex;
+  border-radius: 1rem;
+  width: 100%;
+  height: calc(100% - 50px);
+  flex: 1;
+  overflow: clip;
+}
+@media (min-width: 680px) {
+  .messageSection {
+    border-radius: 0 1rem 1rem 0;
+  }
+}

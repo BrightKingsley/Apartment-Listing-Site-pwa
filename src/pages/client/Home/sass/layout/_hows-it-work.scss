@@ -1,0 +1,40 @@
+#hows-it-work {
+  // @include p(4rem 0);
+  @include p(2.6rem 0);
+  & .container:nth-child(2) {
+    // max-width: 80rem;
+    max-width: 52rem;
+  }
+  & .works-heading {
+    position: relative;
+    color: $text-dark;
+    // font-size: 3.5rem;
+    font-size: 2.275rem;
+    &::before {
+      position: absolute;
+      content: "";
+      left: 50%;
+      transform: translateX(-50%);
+      // width: 4rem;
+      width: 2.6rem;
+      // height: 0.4rem;
+      height: 0.26rem;
+      background: $accent;
+      // border-radius: 1.2rem;
+      border-radius: 0.78rem;
+    }
+  }
+  & .seller-types {
+    // padding-top: 3rem;
+    padding-top: 1.95rem;
+    display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    place-items: center;
+    // gap: 2rem;
+    gap: 1.3rem;
+    & .seller-type {
+      text-align: center;
+    }
+  }
+}

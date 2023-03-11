@@ -1,0 +1,20 @@
+.listingEdit {
+  background-color: #fff;
+  min-width: 20rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.listingEdit p {
+  margin-bottom: 0.5rem;
+}
+
+.listingEdit textarea {
+  height: 8rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}

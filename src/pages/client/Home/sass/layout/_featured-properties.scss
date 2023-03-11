@@ -1,0 +1,59 @@
+#featured-properties {
+  // @include p(6rem 0);
+  @include p(3.9rem 0);
+  background: $properties-bg;
+  & .featured-section-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // gap: 2rem;
+    gap: 1.3rem;
+  }
+  & .featured-section-bottom {
+    // padding-top: 3rem;
+    padding-top: 1.95rem;
+    display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+    // gap: 2.5rem;
+    gap: 1.625rem;
+    & .featured-item {
+      background: $white;
+      // border-radius: 0.9rem;
+      border-radius: 0.585rem;
+      & .featured-img {
+        width: 100%;
+      }
+      & .content-wrapper {
+        // @include p(1.5rem);
+        @include p(0.975rem);
+        &.text-light {
+          // @include p(1rem 0 0 0);
+          @include p(0.65rem 0 0 0);
+        }
+        & .details-short {
+          padding-top: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          // gap: 1rem;
+          gap: 0.65rem;
+          flex-wrap: wrap;
+          @include media(max, 563) {
+            // gap: 1rem;
+            gap: 0.65rem;
+          }
+          & div {
+            display: flex;
+            // gap: 1rem;
+            gap: 0.65rem;
+            & img {
+              // width: 1.8rem;
+              width: 1.17rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

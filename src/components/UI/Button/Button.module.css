@@ -1,0 +1,48 @@
+.button {
+  position: relative;
+  color: var(--light-1);
+  font-weight: bold;
+  padding: 0.5rem 0.8rem;
+  background-color: var(--dark-2);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.button p {
+}
+
+.buttonLight {
+  color: var(--dark-2);
+  background-color: var(--light-1);
+}
+
+.buttonError {
+  background-color: #d34949;
+}
+
+.ripple {
+  position: absolute;
+  background: rgb(255, 255, 255);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: rippleEffect 1s linear infinite;
+}
+
+.rippleLight {
+  background: var(--dark-2);
+}
+
+@keyframes rippleEffect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 50rem;
+    height: 50rem;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,140 @@
+.main {
+  padding-top: 3.7rem;
+  display: flex;
+  overscroll-behavior-y: none;
+  height: 100vh;
+  overflow: hidden;
+  gap: 1rem;
+  padding-bottom: 0.1rem;
+  background-color: var(--light-2);
+}
+
+.listingsSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1.5;
+  align-items: center;
+}
+
+.wrapperMain {
+  position: relative;
+  display: flex;
+  flex: 2.7;
+  gap: 1rem;
+}
+
+.sortListings {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.sortListings:last-child {
+  display: none;
+  align-items: center;
+}
+
+.listings {
+  overflow-y: scroll;
+  height: calc(100vh - 100px);
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.listingsOverlay {
+  display: none;
+}
+
+.mapWrapper {
+  z-index: 1;
+  flex: 1.8;
+}
+
+@media (max-width: 640px) {
+  .listingsSection {
+    align-items: center;
+    overflow: scroll;
+  }
+
+  .main {
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: scroll;
+    gap: 1rem;
+    padding-bottom: 0;
+  }
+
+  .wrapperMain {
+    flex: 3;
+    height: 25rem;
+    position: relative;
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sortListings {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sortListings p {
+    margin-left: 2rem;
+  }
+
+  .sortHamburger {
+    display: flex;
+  }
+
+  
+
+  .hideHamburger {
+    display: none;
+  }
+
+  .listings {
+    height: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .listingsOverlay {
+    display: block;
+    position: absolute;
+    background-color: rgba(80, 128, 80, 0.253);
+    backdrop-filter: blur(1px);
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .mapWrapper {
+    z-index: 1;
+    flex: 1.3;
+  }
+}
+
+/* @media (max-width: 1200px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .wrapperMain {
+    flex: 2;
+    height: 30rem;
+  }
+
+  .mapWrapper {
+    z-index: 1;
+    flex: 1;
+  }
+} */

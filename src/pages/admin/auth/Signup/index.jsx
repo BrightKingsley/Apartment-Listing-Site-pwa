@@ -1,0 +1,154 @@
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+
+import classes from "../authStyles.module.css";
+
+import { Link } from "react-router-dom";
+// import { signupUser } from "../../../api/auth";
+// import { UserContext } from "../../../context/UserContext";
+import { AuthContext } from "../../../context/AuthContext";
+import { NotificationContext } from "../../../context/NotificationContext";
+
+export default function Signup() {
+  const navigate = useNavigate();
+
+  // const { setUser } = useContext(UserContext);
+  const { user, loading, error, setError, signupHandler } =
+    useContext(AuthContext);
+  const { triggerNotification } = useContext(NotificationContext);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [firstname, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    setError(null);
+  }, []);
+
+  useEffect(() => {
+    if (user?.id) {
+      console.log(user.id);
+
+      setFirstName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+
+      navigate("/listings");
+      triggerNotification("signed up");
+    } else {
+      return;
+    }
+  }, [user?.id, error, navigate]);
+
+  // const [loading, setLoading] = useState(false);
+  // const [err, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // setLoading(true);
+
+    signupHandler(e, { firstname, email, password });
+    // const { user } = response.data;
+    //   // setLoading(false);
+    // } catch (error) {
+    //   setError(error);
+    //   // setLoading(false);
+    // }
+  };
+
+  return (
+    <div className={classes.formContainer}>
+      <p>
+        Already have an account? <Link to="../login">login</Link>
+      </p>
+      <div className={classes.formWrapper}>
+        <p className={classes.title}>Signup</p>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              value={firstname}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+                setError((prev) => {
+                  return { ...prev, firstname: "" };
+                });
+              }}
+              name="firstname"
+              type="text"
+              placeholder="firstname"
+            />
+            {error?.firstname && <p>{error.firstname}</p>}
+          </div>
+          <div>
+            <input
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError((prev) => {
+                  return { ...prev, email: "" };
+                });
+              }}
+              name="email"
+              type="email"
+              placeholder="email"
+            />
+            {error?.email && <p>{error.email}</p>}
+          </div>
+          <div>
+            <div className={classes.passwordWrapper}>
+              <input
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError((prev) => {
+                    return { ...prev, password: "" };
+                  });
+                }}
+                name="password"
+                // type={`${showPassword ? "text" : "password"}`}
+                type="password"
+                placeholder="password"
+              />
+              {/* <span
+              className={classes.passwordToggle}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            </span> */}
+            </div>
+            {error?.password && <p>{error.password}</p>}
+          </div>
+
+          <div
+            className={`${classes.passwordWrapper} ${
+              confirmPassword === password
+                ? classes.correctPassword
+                : classes.incorrectPassword
+            }`}
+          >
+            <input
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              name="confirm password"
+              type={`${showPassword ? "text" : "password"}`}
+              placeholder="confirm password"
+            />
+            <span
+              className={classes.passwordToggle}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            </span>
+          </div>
+          <button disabled={loading || !confirmPassword}>signup</button>
+        </form>
+      </div>
+    </div>
+  );
+}

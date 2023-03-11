@@ -1,0 +1,22 @@
+.perks {
+  padding: 0.5rem 0;
+  display: flex;
+  gap: 0.5rem;
+  font-size: small;
+}
+
+.perks small {
+  display: flex;
+  align-items: center;
+  background-color: var(--light-1);
+  color: var(--gray-1);
+  border-radius: 0.1rem;
+  padding: 0.1rem 0.5rem;
+  width: auto;
+}
+
+.perks small svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.4rem;
+}

@@ -1,0 +1,86 @@
+.userChat {
+  position: relative;
+  padding: 0.625rem;
+  display: flex;
+  /* // height: 3rem; */
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 1rem 0 0 1rem;
+  margin-left: 0.5rem;
+  /* margin-right: 0.7rem; */
+  margin-bottom: 0.3rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.active {
+  background-color: var(--light-2);
+  color: gray;
+}
+
+.userChat:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transition: all 0.3s ease;
+}
+
+.userChat:hover::after {
+  width: 100%;
+}
+
+.userChat.active:hover {
+  background-color: var(--light-2);
+}
+
+.userChat::after {
+  content: " ";
+  position: absolute;
+  inset: 0;
+  top: 100%;
+  margin: 0 auto;
+  align-self: center;
+  bottom: -0.1rem;
+  display: block;
+  background-color: var(--light-1);
+  height: 1px;
+  width: 80%;
+  transition: all 0.3s ease;
+}
+
+.userChat.active::after {
+  display: none;
+}
+
+.userChat img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userChatInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userChatInfo span {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.userChatInfo p {
+  font-size: 0.875rem;
+  color: lightgray;
+  margin: 0;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 1.2rem;
+  white-space: nowrap;
+  width: 11.5rem;
+}
+
+@media (max-width: 860px) {
+  .userChat {
+    margin-right: 0.5rem;
+    border-radius: 1rem;
+  }
+}

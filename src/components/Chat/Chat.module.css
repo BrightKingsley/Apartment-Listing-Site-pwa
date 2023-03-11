@@ -1,0 +1,73 @@
+.chat {
+  position: relative;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 1rem;
+  border-left: 5px solid var(--light-2);
+  background-color: var(--light-2);
+}
+
+.chatInfo {
+  height: 3.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(218, 236, 221);
+  /* border-bottom: 1px solid black; */
+  margin: 0 0.5rem;
+  padding: 0.625rem;
+  color: gray;
+}
+
+.chatNav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hamburger {
+  display: none;
+}
+
+.clietListToggle {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .hamburger {
+    display: flex;
+    align-items: center;
+    /* display: none; */
+    cursor: pointer;
+  }
+  .hamburger svg {
+    color: var(--accent);
+  }
+
+  .clietListToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .clietListToggle svg {
+    color: var(--dark-1);
+  }
+}
+
+.chatName {
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chatName img {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+}

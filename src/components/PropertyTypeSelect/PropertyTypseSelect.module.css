@@ -1,0 +1,28 @@
+.propertyTypes {
+  display: grid;
+  grid-template-columns: repeat(2, 6rem);
+  grid-template-rows: repeat(2, 3.5rem);
+  width: 10rem;
+  gap: 0.5rem;
+}
+
+.propertyType {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-2);
+  border-radius: 0.3rem;
+  /* padding: 0.5rem 0.5rem; */
+  color: var(--dark-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.propertyType small,
+.propertyTypeActive small {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: lowercase;
+}

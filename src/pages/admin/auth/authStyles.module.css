@@ -1,0 +1,206 @@
+.auth {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--light-2);
+}
+
+.formContainer {
+  background: url("../../svg/houses-2.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+  /* background-color: #07594b73; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 90%;
+}
+
+.formContainer.login {
+  height: 70%;
+}
+
+.formContainer > p {
+  color: rgb(51, 51, 51);
+}
+
+.formContainer > p > a {
+  color: var(--dark-1);
+  font-weight: bold;
+}
+
+.formWrapper {
+  max-width: 25rem;
+
+  background-color: rgba(128, 128, 128, 0.349);
+
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+
+  border-radius: 0.5rem;
+
+  /* display: flex; */
+  padding: 1.25rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.logo {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.title {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.formWrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordWrapper.incorrectPassword input {
+  color: rgb(211, 73, 73);
+}
+
+.passwordWrapper.correctPassword input {
+  color: var(--dark-1);
+}
+
+.passwordToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  border-left: 1px solid rgb(151, 151, 151);
+  position: absolute;
+  color: rgb(151, 151, 151);
+  right: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.passwordToggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.formWrapper form > div {
+  margin-bottom: 1rem;
+}
+
+.formWrapper form > div > p {
+  color: #d34949;
+  text-align: center;
+  font-size: small;
+  border-bottom: 1px solid #d34949;
+  border-radius: 0.3rem;
+}
+
+.formWrapper form input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid gray;
+  border-radius: 0.5rem;
+}
+.formWrapper form input::placeholder {
+  color: rgb(175, 175, 175);
+}
+
+/* .formWrapper form input:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+} */
+
+.formWrapper form input:focus {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  outline: 2px solid var(--dark-1);
+  outline-offset: -4px;
+}
+
+.formWrapper form label {
+  display: flex;
+  font-size: 0.75rem;
+  align-items: center;
+  gap: 0.625rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.formWrapper form button {
+  background-color: var(--dark-1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.formWrapper form button:hover {
+  background-color: var(--dark-2);
+}
+
+.formWrapper form button:active {
+  transform: scale(0.9);
+}
+
+.formWrapper form button:disabled {
+  cursor: not-allowed;
+}
+
+.formWrapper form a {
+  text-decoration: none;
+}
+
+.error {
+  color: #d34949;
+  text-align: center;
+  font-size: small;
+  margin-top: 0.3rem;
+}
+
+@media (min-width: 840px) {
+  .auth {
+    background: url("../../svg/houses-2.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 80%;
+    background-color: var(--light-2);
+  }
+
+  .formContainer {
+    background: none;
+
+    height: 100%;
+    padding: 0 1rem;
+
+    max-height: 70%;
+    max-width: 60%;
+  }
+  .formWrapper {
+    width: 100%;
+  }
+}
