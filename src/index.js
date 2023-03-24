@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
 
 import "./icons/css/fontawesome.css";
 import "./icons/css/solid.css";
@@ -18,32 +18,37 @@ import Notification from "./components/Notification";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ModalContextProvider } from "./context/ModalContext";
 import { ChatContextProvider } from "./context/ChatContext";
+import { AdminContextProvider } from "./context/AdminContext";
+import { ThemeProvider } from "@mui/material";
+import theme from "./MuiCustomization/theme";
 // import "./leaflet.css";
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
+// document.getElementById("root").innerHTML = `<h1>Loading</h1>`;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <NotificationContextProvider>
-      <ModalContextProvider>
-        <AuthContextProvider>
-          {/* <UserContextProvider> */}
-          <ListingContextProvider>
-            <StyleContextProvider>
-              <ChatContextProvider>
-                <App />
-              </ChatContextProvider>
-            </StyleContextProvider>
-          </ListingContextProvider>
-          {/* </UserContextProvider> */}
-        </AuthContextProvider>
-      </ModalContextProvider>
-    </NotificationContextProvider>
+    <ThemeProvider theme={theme}>
+      <NotificationContextProvider>
+        <ModalContextProvider>
+          <AdminContextProvider>
+            <AuthContextProvider>
+              {/* <UserContextProvider> */}
+              <ListingContextProvider>
+                <StyleContextProvider>
+                  <ChatContextProvider>
+                    <App />
+                  </ChatContextProvider>
+                </StyleContextProvider>
+              </ListingContextProvider>
+              {/* </UserContextProvider> */}
+            </AuthContextProvider>
+          </AdminContextProvider>
+        </ModalContextProvider>
+      </NotificationContextProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
-
-
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -2,11 +2,8 @@ import client from "./client";
 
 const endpoint = "/user";
 export const getUser = (userId, token) => {
-  return client.get(`${endpoint}/${userId}`, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
+  client.setHeader("Authorization", "Bearer " + token);
+  return client.get(`${endpoint}/${userId}`);
 };
 
 export const updateUser = (token, body) => {
@@ -18,9 +15,7 @@ export const updateUser = (token, body) => {
     data.append("image", image);
   });
 
-  return client.patch(`${endpoint}`, data, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
+  client.setHeader("Authorization", "Bearer " + token);
+
+  return client.patch(`${endpoint}`, data);
 };

@@ -1,12 +1,13 @@
 import client from "./client";
 
 const endpoint = "/listing";
-export const getListing = (id, token) =>
-  client.get(`${endpoint}/${id}`, {
+export const getListing = (id, token) => {
+  return client.get(`${endpoint}/${id}`, {
     headers: {
       Authorization: "Bearer " + token,
     },
   });
+};
 
 export const addListing = (listing, token) => {
   const data = new FormData();
@@ -21,8 +22,7 @@ export const addListing = (listing, token) => {
   data.append("size", listing.size);
   data.append("perks", listing.perks);
 
-  const images = Object.values(listing.images).map((image) => image);
-  images.forEach((image) => {
+  listing.images.forEach((image) => {
     data.append(`images`, image);
   });
 
@@ -35,28 +35,27 @@ export const addListing = (listing, token) => {
 };
 
 export const editListing = (property, listingId, token) => {
-  const headers = {
+  client.setHeaders({
     "Content-Type": property.images
       ? "multipart/form-data"
       : "application/json",
     Authorization: "Bearer " + token,
-  };
+  });
 
   if (property.images) {
     const imageData = new FormData();
-    const images = Object.values(property.images).map((image) => image);
-    images.forEach((image) => {
+    property.images.forEach((image) => {
+      console.log("IMAGE_UPLOAD", image);
       imageData.append(`images`, image);
-      return client.patch(`${endpoint}/${listingId}`, property, { headers });
     });
+    return client.patch(`${endpoint}/${listingId}`, imageData);
   }
 
-  return client.patch(`${endpoint}/${listingId}`, property, { headers });
+  return client.patch(`${endpoint}/${listingId}`, property);
 };
 
 export const deleteListing = (listingId, token) => {
-  const headers = {
-    Authorization: "Bearer " + token,
-  };
-  return client.delete(`${endpoint}/${listingId}`, { headers });
+  console.log("DELETE_TOKEN", token);
+  client.setHeader("Authorization", "Bearer " + token);
+  return client.delete(`${endpoint}/${listingId}`);
 };

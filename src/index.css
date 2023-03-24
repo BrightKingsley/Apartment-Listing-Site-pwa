@@ -21,11 +21,13 @@ code {
   font-family: "Poppins";
   /* user-select: none; */
   text-decoration: none;
+  /* scrollbar-color: transparent;
+  scrollbar-width: none; */
 }
 
 *::-webkit-scrollbar {
   /* width: 0.5rem; */
-  display: none;
+  /* display: none; */
 }
 
 *::-webkit-scrollbar-thumb {

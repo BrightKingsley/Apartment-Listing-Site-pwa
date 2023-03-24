@@ -3,14 +3,15 @@ import { Popup, useMap, useMapEvent, useMapEvents } from "react-leaflet";
 import classes from "./MyPopup.module.css";
 
 const MyPopup = ({ children, autoShowPopup, listing }) => {
-  const markerRef = useRef();
-  useEffect(() => {
-    autoShowPopup && markerRef.current?.openPopup(listing?.coords);
-  }, [listing, listing?._id, listing?.coords, autoShowPopup]);
+  // const markerRef = useRef();
+  // useEffect(() => {
+  //   autoShowPopup && markerRef.current?.openPopup(listing?.coords);
+  // }, [listing, listing?._id, listing?.coords, autoShowPopup]);
 
   return (
     <Popup
-      ref={markerRef}
+      // ref={markerRef}
+      closeOnEscapeKey={true}
       className={classes.popup}
       autoClose={false}
       closeOnClick={false}

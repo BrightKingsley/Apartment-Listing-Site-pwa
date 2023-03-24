@@ -5,16 +5,15 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import classes from "../authStyles.module.css";
 
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../context/AuthContext";
-import { NotificationContext } from "../../../context/NotificationContext";
+import { AdminContext } from "../../../../context/AdminContext";
+import { NotificationContext } from "../../../../context/NotificationContext";
+import { AuthContext } from "../../../../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const { isAuth, user, loading, error, setError, loginHandler } =
     useContext(AuthContext);
-
-  const { triggerNotification } = useContext(NotificationContext);
 
   const [showPassword, setShowPassword] = useState(false);
 

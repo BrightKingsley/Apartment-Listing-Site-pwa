@@ -10,7 +10,7 @@ const Notifications = ({ className }) => {
   return (
     <div className={`${classes.notifications} ${className}`}>
       {notifications.map((_, i) => (
-        <div className={classes.notification}>
+        <div key={Math.random()} className={classes.notification}>
           {/* <span> */}
           {/* <img src={`../assets/${i + 1}.jpg`} alt="notif" /> */}
           {/* <span className={classes.badge}>

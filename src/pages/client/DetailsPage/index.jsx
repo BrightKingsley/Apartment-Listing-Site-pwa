@@ -51,7 +51,7 @@ const DetailsPage = () => {
   useEffect(() => {
     document.title = "Apartment Listing || Details";
     loadListing(id);
-  }, [id, currentListing]);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -87,12 +87,10 @@ const DetailsPage = () => {
           <div className={classes.dragLine}></div>
           <section className={classes.section1}>
             <div className={classes.actions}>
-              <span>
-                <Edit
-                  text="edit this listing?"
-                  actionConfirm={triggerListingEdit}
-                />
-              </span>
+              <Edit
+                text="edit this listing?"
+                actionConfirm={triggerListingEdit}
+              />
               <span className={classes.bookmarkWrapper}>
                 <Bookmark listingId={currentListing._id} />
               </span>
@@ -112,10 +110,10 @@ const DetailsPage = () => {
                 duration={currentListing.duration}
               />
               <div className={classes.section1Links}>
-                <Link className={classes.rentNow} to="../message">
+                <Link className={classes.rentNow} to="/message">
                   Rent Now
                 </Link>
-                <Link className={classes.contactAgent} to="../message">
+                <Link className={classes.contactAgent} to="/message">
                   Contact Agent
                 </Link>
               </div>

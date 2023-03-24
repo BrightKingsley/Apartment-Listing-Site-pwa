@@ -1,11 +1,9 @@
 import client from "./client";
 
-export const signupUser = (data, token) =>
-  client.post("/signup", data, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
+export const signupUser = (data, token) => {
+  client.setHeader("Authorization", "Bearer " + token);
+  return client.post("/signup", data);
+};
 
 export const loginUser = (data, token) =>
   client.post("/login", data, {

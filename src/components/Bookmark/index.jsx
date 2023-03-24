@@ -2,8 +2,10 @@ import { BookmarkBorderRounded, BookmarkRounded } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { addToBookmarks, removeFromBookmarks } from "../../api/bookmarks";
 import { AuthContext } from "../../context/AuthContext";
+import { ModalContext } from "../../context/ModalContext";
 import classes from "./Bookmark.module.css";
 
 const Bookmark = ({ listingId }) => {
@@ -12,6 +14,24 @@ const Bookmark = ({ listingId }) => {
   const [bookmarked, setBookmarked] = useState(
     isAuth ? user?.bookmarks?.includes(listingId) : null
   );
+
+  const { triggerModal } = useContext(ModalContext);
+
+  const navigate = useNavigate();
+
+  const navigateLogin = () => {
+    navigate("/auth/login");
+  };
+
+  const handleClick = () => {
+    isAuth
+      ? toggleBookmark()
+      : triggerModal(
+          "You must be logged in to add a bookmark. Login now?",
+          () => navigateLogin,
+          () => triggerModal
+        );
+  };
 
   useEffect(() => {
     const hasBookmark = user?.bookmarks?.includes(listingId);
@@ -41,7 +61,7 @@ const Bookmark = ({ listingId }) => {
 
   return (
     <span
-      onClick={toggleBookmark}
+      onClick={handleClick}
       className={classes.bookmark}
       title="bookmark listing"
     >

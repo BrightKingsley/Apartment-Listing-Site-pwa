@@ -9,9 +9,7 @@ import {
 } from "@mui/icons-material";
 import { Button } from "@mui/material";
 
-const PropertyTypeSelect = () => {
-  const [type, setType] = useState("land");
-
+const PropertyTypeSelect = ({ setType, type }) => {
   return (
     <div className={classes.propertyTypes}>
       <Button

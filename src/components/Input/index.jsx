@@ -34,9 +34,11 @@ const Input = ({
           id={name}
           type={type}
           min={0}
+          accept="image/*"
           multiple
           onInput={(e) => {
-            type === "file" && getImages(e.target.files);
+            type === "file" &&
+              getImages(Object.values(e.target.files).map((image) => image));
           }}
           style={{ display: hide ? "none" : null }}
         />

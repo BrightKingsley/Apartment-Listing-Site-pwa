@@ -1,18 +1,12 @@
 import client from "./client";
 
 const endpoint = "/conversations";
-export const getConversations = (id, token) => {
-  return client.get(`${endpoint}/${id}`, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
+export const getConversations = (userId, token) => {
+  client.setHeader("Authorization", "Bearer " + token);
+  return client.get(`${endpoint}/${userId}`);
 };
 
 export const addConversation = (body, token) => {
-  return client.post(`${endpoint}`, body, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
+  client.setHeader("Authorization", "Bearer " + token);
+  return client.post(`${endpoint}`, body);
 };

@@ -8,8 +8,8 @@ import classes from "../authStyles.module.css";
 import { Link } from "react-router-dom";
 // import { signupUser } from "../../../api/auth";
 // import { UserContext } from "../../../context/UserContext";
-import { AuthContext } from "../../../context/AuthContext";
-import { NotificationContext } from "../../../context/NotificationContext";
+import { AuthContext } from "../../../../context/AuthContext";
+import { NotificationContext } from "../../../../context/NotificationContext";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -104,6 +104,7 @@ export default function Signup() {
             <div className={classes.passwordWrapper}>
               <input
                 value={password}
+                minLength={6}
                 onChange={(e) => {
                   setPassword(e.target.value);
                   setError((prev) => {

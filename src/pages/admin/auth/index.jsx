@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import classes from "./authStyles.module.css";
+import classes from "./AdminAuthStyles.module.css";
 
 const Auth = () => {
   return (
-    <div className={classes.auth}>
+    <div className={classes.adminAuth}>
       <Outlet />
     </div>
   );

@@ -1,23 +1,42 @@
 import { Close, MailOutlineRounded } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { ModalContext } from "../../context/ModalContext";
 import Overlay from "../Overlay";
 import classes from "./Modal.module.css";
 
 const Modal = () => {
-  const { showModal, triggerModal, modalMessage, actionConfirm, actionCancel } =
-    useContext(ModalContext);
+  const {
+    showModal,
+    triggerModal,
+    modalMessage,
+    actionConfirm,
+    actionCancel,
+    disableOnClick,
+  } = useContext(ModalContext);
+
+  // useEffect(() => {
+  //   window.addEventListener("keydown", (e) => handleKey(e));
+  // });
 
   const handleShowModal = () => {
+    actionCancel && actionCancel();
     triggerModal();
   };
+
+  // const handleKey = (e) => {
+  //   e.code === "Escape" && handleShowModal();
+  // };
 
   return createPortal(
     showModal && (
       <div className={classes.modalWrapper}>
-        <Overlay show={showModal} handleshowOverlay={handleShowModal} />
+        <Overlay
+          show={showModal}
+          handleshowOverlay={handleShowModal}
+          disableOnClick={disableOnClick}
+        />
         <div className={classes.modal}>
           <span
             className={classes.close}

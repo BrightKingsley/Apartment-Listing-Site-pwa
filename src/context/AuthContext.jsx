@@ -6,7 +6,6 @@ import React, {
   useContext,
 } from "react";
 import { loginUser, signupUser } from "../api/auth";
-import { UserContext } from "./UserContext";
 import { NotificationContext } from "./NotificationContext";
 import { getUser } from "../api/user";
 
@@ -125,6 +124,7 @@ export const AuthContextProvider = ({ children }) => {
       const user = response.data;
 
       if (user?.token) {
+        console.log("LOGIN_RUNNING");
         setIsAuth(true);
         setToken(user.token);
         setAuthLoading(false);
@@ -150,13 +150,15 @@ export const AuthContextProvider = ({ children }) => {
   // };
 
   const logoutHandler = () => {
-    setIsAuth(false);
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("expiryDate");
-    triggerNotification("logged out");
+    if (userId || user || isAuth) {
+      setIsAuth(false);
+      setToken(null);
+      setUser(null);
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("expiryDate");
+      triggerNotification("logged out");
+    }
   };
 
   return (

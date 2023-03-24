@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Overlay.module.css";
 
-const Overlay = ({ children, show, handleshowOverlay, disableOnClick }) => {
+const Overlay = ({ children, show, handleShowOverlay, disableOnClick }) => {
   return (
     show &&
     (children ? (
       <div
         className={classes.overlay}
-        onClick={disableOnClick ? () => handleshowOverlay() : null}
+        onClick={disableOnClick ? () => handleShowOverlay() : null}
         title={disableOnClick ? "close" : ""}
       >
         {children}
@@ -15,7 +15,7 @@ const Overlay = ({ children, show, handleshowOverlay, disableOnClick }) => {
     ) : (
       <div
         className={classes.overlay}
-        onClick={disableOnClick ? () => handleshowOverlay() : null}
+        onClick={disableOnClick ? () => handleShowOverlay() : null}
         title={disableOnClick ? "close" : ""}
       />
     ))

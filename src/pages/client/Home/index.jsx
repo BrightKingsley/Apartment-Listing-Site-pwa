@@ -167,7 +167,7 @@ const HomePage = () => {
               <nav className="navigation">
                 <a href="index.html" className="myLogo">
                   {/* <img src={Logo} alt="Logo" /> */}
-                  <h1>Housing.</h1>
+                  <h1>Raale.</h1>
                 </a>
                 <div className="mobile_menu_icon" onClick={handleToggleMenu}>
                   <div
@@ -201,7 +201,7 @@ const HomePage = () => {
                   </div>
                   <div className="cta_links">
                     <li className="nav_list">
-                      <a href="/auth/signup" className="nav_link">
+                      <a href="/auth/login" className="nav_link">
                         Log in
                       </a>
                     </li>
@@ -548,7 +548,7 @@ const HomePage = () => {
             <div className="footer-bottom">
               <div className="myLogo">
                 {/* <img src={Logo} alt="Logo" className="myLogo" /> */}
-                <h2>Housing.</h2>
+                <h2>Raale.</h2>
               </div>
               <div>
                 <span className="text-light">

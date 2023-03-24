@@ -77,26 +77,26 @@
   margin: 0 0.5rem;
   margin-bottom: 0.5rem;
 }
-
 .chart {
   width: 100%;
   position: relative;
   height: 100%;
   height: 10rem;
   background-color: #fff;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem;
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .chart canvas {
-  width: 100%;
-  /* max-width: 100%; */
+  /* width: 30rem; */
+  width: 700px;
   position: relative;
   height: 10rem;
   max-height: 100%;
+  /* background-color: red; */
 }
 
 .bottom {
@@ -256,6 +256,13 @@
   height: 3rem;
   border-radius: 0.5rem;
   overflow: clip;
+  cursor: pointer;
+  background-color: var(--dark-1);
+}
+
+.profile:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease-in-out;
 }
 
 .adminProfile .profile > img {
@@ -312,7 +319,7 @@
   }
 
   .chart {
-    width: 100vw;
+    /* width: 100vw; */
     height: 10rem;
     /* background-color: #fff; */
     border-radius: 0.5rem;
@@ -323,15 +330,13 @@
     overflow-x: scroll;
     /* padding: 0 0.3rem; */
   }
-
+  /* 
   .chart > div {
-    width: 500px;
   }
 
   .chart canvas {
-    width: 200%;
     height: 100%;
-  }
+  } */
 
   .bottom {
     display: flex;

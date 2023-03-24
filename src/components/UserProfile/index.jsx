@@ -10,20 +10,18 @@ import classes from "./UserProfile.module.css";
 import Button from "../UI/Button/index";
 import ImageFile from "../ImageFile";
 
-import profileImg from "../../imgs/avatar3.jpg";
+import profileImg from "../../imgs/user.png";
 import { updateUser } from "../../api/user";
+import { updateAdmin } from "../../api/admin";
+import { NotificationContext } from "../../context/NotificationContext";
 
-const UserProfile = () => {
-  const { user, token, setUser } = useContext(AuthContext);
+const UserProfile = ({ user, token, setUser, isAdmin }) => {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [img, setImg] = useState(null);
-
   const [imageURI, setImageURI] = useState(null);
 
-  useEffect(() => {
-    console.log("USER:", user);
-  }, [user]);
+  const { triggerNotification } = useContext(NotificationContext);
 
   const readURI = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -35,16 +33,20 @@ const UserProfile = () => {
     }
   };
 
-  console.log(user?.image);
-
   const handleFileSubmit = async () => {
     try {
-      const response = await updateUser(token, { image: img });
+      const response = isAdmin
+        ? await updateAdmin(token, { image: img })
+        : await updateUser(token, { image: img });
       console.log("RES_DATA", response.data);
-      const { user } = response.data;
-      if (user) {
-        setUser(user);
+      const profile = response.data.user || response.data.admin;
+      if (profile) {
+        setUser(profile);
+        triggerNotification("Profile updated successfully ");
       } else {
+        triggerNotification("Profile update failed");
+        setImageURI(user?.image);
+        setConfirm(false);
         return console.log("Failed");
       }
     } catch (error) {
@@ -93,6 +95,7 @@ const UserProfile = () => {
                   setOpen(false);
                   setConfirm(true);
                 }}
+                accept="image/*"
                 hidden
                 id="profileImg"
                 type="file"

@@ -12,8 +12,7 @@ import "./panelAnimation.css";
 
 const Panel = ({ children, showPanel, hidePanel }) => {
   const hide = () => {
-    hidePanel.setShowPanel(false);
-    hidePanel.setPanelContent("");
+    hidePanel();
   };
 
   return (

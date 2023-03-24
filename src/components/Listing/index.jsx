@@ -15,11 +15,13 @@ import {
 import { Button, IconButton } from "@mui/material";
 import listingContext from "../../context/ListingContext";
 import { ModalContext } from "../../context/ModalContext";
+import { AdminContext } from "../../context/AdminContext";
 
 const Listing = ({ listing, setCurrentListing, isAdmin }) => {
   const { triggerModal } = useContext(ModalContext);
 
   const { removeListing } = useContext(listingContext);
+  const { isAuth: adminIsAuth, adminWriteAccess } = useContext(AdminContext);
 
   const handleMouseEnter = () => {
     listing && setCurrentListing(listing);
@@ -35,10 +37,12 @@ const Listing = ({ listing, setCurrentListing, isAdmin }) => {
       onMouseEnter={handleMouseEnter}
       // onClick={handleClick}
     >
-      <span className={classes.bookmarkWrapper}>
-        <Bookmark listingId={listing._id} />
-      </span>
-      {isAdmin && (
+      {!adminIsAuth && (
+        <span className={classes.bookmarkWrapper}>
+          <Bookmark listingId={listing._id} />
+        </span>
+      )}
+      {adminWriteAccess && (
         <span
           className={classes.delete}
           onClick={() => {

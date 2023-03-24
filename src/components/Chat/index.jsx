@@ -1,53 +1,60 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Input from "../MsgInput";
 import Messages from "../Messages";
 import { ChatContext } from "../../context/ChatContext";
-import Hamburger from "../../svg/Hamburger";
 import { StyleContext } from "../../context/StyleContext";
 
 //Style Classes
 import classes from "./Chat.module.css";
 
-import photo from "../../imgs/avatar2.png";
-import { ListAltRounded } from "@mui/icons-material";
-import { ListRounded, MenuBook, NavigateNext } from "@mui/icons-material";
-import { FaHamburger } from "react-icons/fa";
-import { Menu } from "@mui/material";
+import { ListRounded, NavigateNext } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
-export default function Chat() {
-  const { currentConversation, currentClient } = useContext(ChatContext);
+import photo from "../../imgs/user.png";
+import { AuthContext } from "../../context/AuthContext";
 
-  const { showSide, showClientsList, toggleSidebar, toggleClientList } =
+export default function Chat({ showDrawers = true }) {
+  const { currentConversation, receiver } = useContext(ChatContext);
+  const { user } = useContext(AuthContext);
+
+  const { showSide, toggleSidebar, toggleClientList } =
     useContext(StyleContext);
 
   return (
     <div className={classes.chat}>
       <div className={classes.chatInfo}>
         <div className={classes.chatNav}>
-          <div
-            className={classes.hamburger}
-            onClick={() => {
-              !showSide && toggleSidebar(true);
-            }}
-          >
-            <NavigateNext />
-          </div>
+          {showDrawers && (
+            <IconButton
+              className={classes.hamburger}
+              onClick={() => {
+                !showSide && toggleSidebar(true);
+              }}
+            >
+              <NavigateNext />
+            </IconButton>
+          )}
           {currentConversation && (
             <div className={classes.chatName}>
               {/* {data.user?.photoURL && <img src={data.user?.photoURL} alt="" />}
             <span>{data.user?.displayName}</span> */}
-              <img src={photo} alt="" />
-              <span>{currentClient?.firstname}</span>
+              <img src={receiver?.image ? receiver?.image : photo} alt="" />
+              <span>
+                {receiver?.firstname}
+                {user && " - Admin"}
+              </span>
             </div>
           )}
-          <div
-            className={classes.clietListToggle}
-            onClick={() => {
-              toggleClientList();
-            }}
-          >
-            <ListRounded />
-          </div>
+          {showDrawers && (
+            <IconButton
+              className={classes.clientListToggle}
+              onClick={() => {
+                toggleClientList();
+              }}
+            >
+              <ListRounded />
+            </IconButton>
+          )}
         </div>
       </div>
       <Messages />

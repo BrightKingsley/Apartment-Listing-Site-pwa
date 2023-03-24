@@ -26,6 +26,11 @@
   border-radius: 50%;
 }
 
+.exit:active {
+  transform: scale(0.8);
+  transition: transform 0.2s ease-in-out;
+}
+
 .exit svg {
   fill: var(--accent);
   width: 2rem;

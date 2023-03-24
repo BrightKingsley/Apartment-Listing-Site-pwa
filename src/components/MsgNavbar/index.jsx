@@ -1,34 +1,32 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import LogoutIcon from "../../svg/LogoutIcon";
 
-import photo from "../../imgs/avatar2.png";
+import photo from "../../imgs/user.png";
 
 import classes from "./MsgNavbar.module.css";
+import { AdminContext } from "../../context/AdminContext";
+import { IconButton } from "@mui/material";
+import { StyleContext } from "../../context/StyleContext";
+import { NavigateBeforeRounded } from "@mui/icons-material";
 
 export default function MsgNavbar() {
-  const { user } = useContext(AuthContext);
+  const { admin } = useContext(AdminContext);
+  const { toggleSidebar } = useContext(StyleContext);
 
   return (
     <div className={classes.navbar}>
-      {/* <div className="user">
-        <img src={currentUser.photoURL} alt="" />
-        <span>{currentUser.displayName}</span>
-      </div>
-
-      <button
-        onClick={() => {
-          signOut(auth);
-          navigate("/login");
-        }}
-      >
-        <LogoutIcon /> <p>Logout</p>
-      </button> */}
-      {user && (
+      <span className={classes.hamburger}>
+        <IconButton
+          onClick={() => {
+            toggleSidebar(false);
+          }}
+        >
+          <NavigateBeforeRounded />
+        </IconButton>
+      </span>
+      {admin && (
         <div className={classes.user}>
-          <img src={photo} alt="" />
-          <span>{user?.firstname}</span>
+          <img src={admin?.image ? admin?.image : photo} alt="" />
+          <span>{admin?.firstname}</span>
         </div>
       )}
     </div>

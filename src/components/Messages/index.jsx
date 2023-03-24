@@ -32,64 +32,11 @@ const Messages = () => {
 
   useEffect(() => {
     arrivalMessage &&
-      currentConversation?.members.includes(arrivalMessage?.senderId);
+      currentConversation?.members?.includes(arrivalMessage?.senderId);
     setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentConversation]);
 
-  useEffect((e) => {
-    // setMessages([
-    //   {
-    //     id: 1,
-    //     text: "This is my first test",
-    //     owner: true,
-    //   },
-    //   {
-    //     id: 2,
-    //     text: "This is my second test",
-    //     owner: true,
-    //   },
-    //   {
-    //     id: 3,
-    //     text: "This is my third test",
-    //     owner: false,
-    //   },
-    //   {
-    //     id: 4,
-    //     text: "This is my fourth test",
-    //     owner: true,
-    //   },
-    //   {
-    //     id: 5,
-    //     text: "This is my fifth test",
-    //     owner: false,
-    //   },
-    // {
-    //   id: 5,
-    //   text: "This is my fifth test",
-    //   owner: false,
-    // },
-    // {
-    //   id: 5,
-    //   text: "This is my fifth test",
-    //   owner: false,
-    // },
-    // {
-    //   id: 5,
-    //   text: "This is my fifth test",
-    //   owner: false,
-    // },
-    // {
-    //   id: 5,
-    //   text: "This is my fifth test",
-    //   owner: false,
-    // },
-    // {
-    //   id: 5,
-    //   text: "This is my fifth test",
-    //   owner: false,
-    // },
-    // ]);
-  }, []);
+  useEffect((e) => {}, []);
 
   return (
     <div
@@ -101,7 +48,7 @@ const Messages = () => {
     >
       {currentConversation ? (
         messages?.map((message) => (
-          <Message key={message?._id} messageInfo={message} />
+          <Message key={Math.random()} messageInfo={message} />
         ))
       ) : (
         <div className={classes.msgPlaceholder}>

@@ -9,7 +9,7 @@
 }
 
 .formContainer {
-  background: url("../../svg/houses-2.svg");
+  background: url("../../../svg/houses-2.svg");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 100%;
@@ -184,7 +184,7 @@
 
 @media (min-width: 840px) {
   .auth {
-    background: url("../../svg/houses-2.svg");
+    background: url("../../../svg/houses-2.svg");
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: 80%;

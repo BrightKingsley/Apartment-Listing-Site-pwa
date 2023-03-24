@@ -16,10 +16,12 @@ import Listings from "../../client/Listings";
 import Notifications from "../../../components/Notifications";
 
 import { UnfoldLessRounded, UnfoldMoreRounded } from "@mui/icons-material";
-import userProfile from "../../../imgs/avatar3.jpg";
+import userProfile from "../../../imgs/user.png";
 import OpenWithRounded from "@mui/icons-material/OpenWithRounded";
-
-const date = new Date();
+import ProfileImg from "../../../components/ProfileImg/index";
+import { AdminContext } from "../../../context/AdminContext";
+import Panel from "../../../components/Panel";
+import UserProfile from "../../../components/UserProfile";
 
 const payments = [
   {
@@ -55,18 +57,19 @@ const payments = [
 ];
 
 const Dashboard = () => {
-  const [listings, setListings] = useState([]);
   const [expandMap, setExpandMap] = useState(false);
+
+  const [showPanel, setShowPanel] = useState(false);
+
+  const togglePanel = () => {
+    setShowPanel((prev) => !prev);
+  };
 
   const mapRef = useRef();
 
-  const loadListings = async () => {
-    const response = await getListings();
-    setListings(response.data.listings);
-    // const array = listings.map((listing) => [listing.coords]);
-    // console.log(array);
-    // setCoordsArray(array);
-  };
+  const { listings, loadListings } = useContext(listingContext);
+
+  const { admin, token, setAdmin } = useContext(AdminContext);
 
   const handleExpandMap = () => {
     setExpandMap((prevExpand) => !prevExpand);
@@ -147,7 +150,7 @@ const Dashboard = () => {
                 <span onClick={handleExpandMap}>
                   {expandMap ? <UnfoldLessRounded /> : <OpenWithRounded />}
                 </span>
-                {listings.length > 0 && (
+                {listings?.length > 0 && (
                   <Map section="dashboard" listings={listings} zoom={7}></Map>
                 )}
               </div>
@@ -156,13 +159,25 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={classes.right}>
+        <Panel showPanel={showPanel} hidePanel={togglePanel}>
+          <UserProfile
+            user={admin}
+            token={token}
+            setUser={setAdmin}
+            isAdmin={true}
+          />
+        </Panel>
         <div className={classes.adminProfile}>
           <div>
-            <p>welcome, Evelyn</p>
+            <p>welcome, {admin?.firstname}</p>
             <small>Admin Dashboard</small>
           </div>
-          <span className={classes.profile}>
-            <img src={userProfile} alt="admin" />
+          <span
+            className={classes.profile}
+            onClick={togglePanel}
+            title="profile"
+          >
+            <ProfileImg img={admin?.image ? admin.image : userProfile} />
           </span>
         </div>
         <div className={classes.calendar}>

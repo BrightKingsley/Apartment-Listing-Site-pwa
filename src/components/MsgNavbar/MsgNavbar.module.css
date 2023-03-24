@@ -1,4 +1,5 @@
 .navbar {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 0.625rem 0;
@@ -6,8 +7,20 @@
   color: #effdf5;
   justify-content: center;
   /* background-color: var(--light-1); */
+  width: 100%;
   overflow: clip;
   border-radius: 1rem 0 0 1rem;
+}
+
+.hamburger {
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.hamburger svg {
+  color: var(--accent);
 }
 
 .navbar p {
@@ -26,4 +39,6 @@
   width: 1.5rem;
   object-fit: cover;
   border-radius: 50%;
+  background-color: var(--dark-2);
 }
+

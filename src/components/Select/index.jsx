@@ -3,11 +3,6 @@ import classes from "./Select.module.css";
 import Select from "react-select";
 
 const MySelect = ({ options, getSelected, selected, placeholder }) => {
-  const setSelected = (e) => {
-    console.log(e.value);
-    getSelected(e.value);
-  };
-
   return (
     <Select
       styles={{
@@ -41,8 +36,8 @@ const MySelect = ({ options, getSelected, selected, placeholder }) => {
       defaultValue={options[0]}
       options={options}
       placeholder={placeholder}
-      onChange={setSelected}
-      value={selected}
+      onChange={(e) => getSelected(e.value)}
+      // value={selected}
     />
   );
 };

@@ -157,4 +157,17 @@
     grid-row: 1/-1;
     grid-column: 1/2;
   }
+
+  .resetContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+  .reset {
+    background-color: var(--dark-2);
+    width: 100%;
+    /* padding: 0; */
+    color: #fff;
+  }
 }

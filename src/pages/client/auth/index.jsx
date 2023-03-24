@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { Outlet } from "react-router-dom";
 import classes from "./authStyles.module.css";
 
 const Auth = () => {

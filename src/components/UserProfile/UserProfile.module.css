@@ -25,6 +25,7 @@
   height: 100%;
   border-radius: 1rem;
   overflow: clip;
+  background-color: var(--dark-1);
 }
 
 .userProfile .top span img {
@@ -45,6 +46,7 @@
   background-color: var(--gray-1);
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   transition: all 0.1s ease;
 }
@@ -73,6 +75,7 @@
 .dropdown {
   /* background-color: red; */
   border: 1px solid var(--dark-1);
+  min-width: 10rem;
 }
 
 .userProfile .body {

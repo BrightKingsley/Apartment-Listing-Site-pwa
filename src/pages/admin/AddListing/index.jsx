@@ -7,6 +7,7 @@ import ImgIcon from "../../../svg/ImgIcon";
 import { NotificationContext } from "../../../context/NotificationContext";
 import { addListing } from "../../../api/listing";
 import { AuthContext } from "../../../context/AuthContext";
+import { AdminContext } from "../../../context/AdminContext";
 
 const AddListing = () => {
   const [title, setTitle] = useState(null);
@@ -23,7 +24,7 @@ const AddListing = () => {
   const [images, setImages] = useState([]);
 
   const { triggerNotification } = useContext(NotificationContext);
-  const { token } = useContext(AuthContext);
+  const { token } = useContext(AdminContext);
 
   useEffect(() => {
     document.title = "Appartment Listing || Add Listing";
@@ -44,46 +45,9 @@ const AddListing = () => {
   }, [lat, lng]);
   ////////////////////////////
 
-  const getImages = (images) => {
-    console.log(title, location, coords, description);
-    setImages(images);
+  const getImages = (imgs) => {
+    setImages(imgs);
   };
-
-  // const setTitleValue = (value) => {
-  //   setTitle(value);
-  // };
-  // const setLocationValue = (value) => {
-  //   setLocation(value);
-  // };
-  // const setPriceValue = (value) => {
-  //   setPrice(value);
-  // };
-
-  // const setSizeValue = (value) => {
-  //   setSize(value);
-  // };
-  // const setDescriptionValue = (value) => {
-  //   setDescription(value);
-  // };
-  // const setTypeValue = (value) => {
-  //   setType(value);
-  // };
-  // const setRoomsValue = (value) => {
-  //   setRooms(value);
-  // };
-  // const setPerksValue = (value) => {
-  //   setPerks(value);
-  // };
-
-  // //Lat and Lng
-  // const setLatValue = (value) => {
-  //   setLat(+value);
-  //   setCoordsValue(value, null);
-  // };
-  // const setLngValue = (value) => {
-  //   setLng(+value);
-  //   setCoordsValue(null, value);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,8 +67,13 @@ const AddListing = () => {
     };
 
     const response = await addListing(data, token);
-    const { listing } = response.data;
-    if (listing) triggerNotification("Listing added successfully");
+    const listing = response.data?.listing;
+    console.log(response.data);
+    if (listing) {
+      triggerNotification("Listing added successfully");
+    } else {
+      triggerNotification("couldn't add listing");
+    }
   };
 
   return (

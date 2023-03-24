@@ -9,31 +9,32 @@ import { ChatContext } from "../../context/ChatContext";
 import classes from "./MsgInput.module.css";
 import { ImageRounded, SendRounded } from "@mui/icons-material";
 import { sendMessage } from "../../api/messages";
+import { AdminContext } from "../../context/AdminContext";
 
 const Input = () => {
-  const { currentConversation, currentClient, setMessages, socket } =
+  const { currentConversation, receiver, setMessages, socket } =
     useContext(ChatContext);
   const [text, setText] = useState("");
   const { userId, token } = useContext(AuthContext);
+  const { adminId, token: adminToken } = useContext(AdminContext);
 
   const handleSend = async () => {
     const newMessage = {
       conversationId: currentConversation._id,
-      senderId: userId,
+      senderId: userId || adminId,
       text,
     };
 
-    console.log("CLIENT:", currentClient);
+    console.log("SENDER", newMessage.senderId);
 
     socket?.emit("sendMessage", {
-      senderId: userId,
-      receiverId: currentClient?.id,
+      senderId: userId || adminId,
+      receiverId: receiver?.id,
       text,
     });
 
     try {
-      const response = await sendMessage(newMessage, token);
-      console.log("MSG_DATA:", response.data);
+      const response = await sendMessage(newMessage, token || adminToken);
       setMessages((prev) => [...prev, response.data]);
       setText("");
     } catch (error) {}

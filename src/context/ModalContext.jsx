@@ -6,6 +6,7 @@ export const ModalContext = createContext({
   modalMessage: "",
   actionConfirm: () => {},
   actionCancel: () => {},
+  disableOnClick: false,
 });
 
 export const ModalContextProvider = ({ children }) => {
@@ -13,12 +14,14 @@ export const ModalContextProvider = ({ children }) => {
   const [actionConfirm, setActionConfirm] = useState(null);
   const [actionCancel, setActionCancel] = useState(null);
   const [modalMessage, setModalMessage] = useState("");
+  const [disableOnClick, setDisableOnClick] = useState(false);
 
-  const triggerModal = (message, confirm, cancel) => {
+  const triggerModal = (message, confirm, cancel, clickToDisable) => {
     !showModal ? setShowModal(true) : setShowModal(false);
     message && setModalMessage(message);
     confirm && typeof confirm === "function" && setActionConfirm(confirm);
     cancel && typeof cancel === "function" && setActionCancel(cancel);
+    typeof clickToDisable === "boolean" && setDisableOnClick(clickToDisable);
   };
 
   return (
@@ -29,6 +32,7 @@ export const ModalContextProvider = ({ children }) => {
         modalMessage,
         actionConfirm,
         actionCancel,
+        disableOnClick,
       }}
     >
       {children}

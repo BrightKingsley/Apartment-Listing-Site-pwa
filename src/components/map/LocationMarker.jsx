@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMap, Marker } from "react-leaflet";
 import MyPopup from "./MyPopup";
-import MyMarker from "./MyMarker";
 import classes from "./LocationMarker.module.css";
 import Price from "../Price";
 
@@ -25,14 +24,28 @@ function LocationMarker({
     listings && map.flyTo(listings[0].coords, map.getZoom(), { animate: true });
   }, [map, coords, listings, listing]);
 
+  const [refReady, setRefReady] = useState(false);
+
+  let markerRef = useRef([]);
+
+  useEffect(() => {
+    autoShowPopup && refReady && markerRef.current?.openOn(listing?.coords);
+    // markerRef.current = markerRef.current.slice(0, listings?.length);
+  }, [listing, listing?._id, listing?.coords, autoShowPopup, refReady]);
+
   return listings && listings.length > 1
     ? listings.map((listing, index) => (
-        <MyMarker
-          // markerRef={markerRef}
+        <Marker
+          // ref={(el) => (markerRef.current[index] = el)}
           key={Math.random()}
           listing={listing}
           index={index}
           autoShowPopup={autoShowPopup}
+          position={
+            listing?.coords && listing?.coords.length > 0
+              ? listing?.coords
+              : [10, 10]
+          }
         >
           {children ? (
             <MyPopup autoShowPopup={autoShowPopup} listing={listing}>
@@ -51,10 +64,22 @@ function LocationMarker({
               </MyPopup>
             )
           )}
-        </MyMarker>
+        </Marker>
       ))
     : listing && listing?.coords && (
-        <MyMarker listing={listing} autoShowPopup={autoShowPopup}>
+        <Marker
+          listing={listing}
+          autoShowPopup={autoShowPopup}
+          ref={(r) => {
+            markerRef = r;
+            setRefReady(true);
+          }}
+          position={
+            listing?.coords && listing?.coords.length > 0
+              ? listing?.coords
+              : [10, 10]
+          }
+        >
           {children ? (
             <MyPopup>{children}</MyPopup>
           ) : (
@@ -70,7 +95,7 @@ function LocationMarker({
               </MyPopup>
             )
           )}
-        </MyMarker>
+        </Marker>
       );
 }
 

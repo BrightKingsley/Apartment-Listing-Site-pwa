@@ -3,23 +3,20 @@ import React, { useState, useEffect, useContext } from "react";
 import Conversations from "../../../components/Conversations";
 import Chat from "../../../components/Chat";
 import classes from "./Messages.module.css";
-import { io } from "socket.io-client";
-import { useRef } from "react";
-import { AuthContext } from "../../../context/AuthContext";
-import { connectToSocket } from "../../../api/socket";
 import AllClients from "../../../components/AllClients";
 import { ChatContext } from "../../../context/ChatContext";
+import { AdminContext } from "../../../context/AdminContext";
 
 const Messages = () => {
-  const { userId } = useContext(AuthContext);
+  const { adminId } = useContext(AdminContext);
   const { socket } = useContext(ChatContext);
 
   useEffect(() => {
-    socket?.emit("addUser", userId);
+    socket?.emit("addUser", adminId);
     socket?.on("getUsers", (users) => {
-      console.log("SOCKET_USERS:", users);
+      // console.log("SOCKET_USERS:", users);
     });
-  }, [socket, socket?.id, userId]);
+  }, [socket, socket?.id, adminId]);
 
   return (
     <div className={classes.messageSection}>

@@ -2,17 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-import classes from "../authStyles.module.css";
+import classes from "../AdminAuthStyles.module.css";
 
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../context/AuthContext";
-import { NotificationContext } from "../../../context/NotificationContext";
+import { NotificationContext } from "../../../../context/NotificationContext";
+import { AdminContext } from "../../../../context/AdminContext";
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const { isAuth, user, loading, error, setError, loginHandler } =
-    useContext(AuthContext);
+  const { isAuth, admin, loading, error, setError, loginHandler } =
+    useContext(AdminContext);
 
   const { triggerNotification } = useContext(NotificationContext);
 
@@ -30,7 +30,7 @@ export default function Login() {
       setEmail("");
       setPassword("");
 
-      navigate("/listings");
+      navigate("../../dashboard");
     } else {
       // console.log(error);
       return;

@@ -1,13 +1,19 @@
 .header {
   position: fixed;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   border-bottom: 2px solid var(--gray-2);
   padding: 0.5rem 3rem;
   background-color: #fff;
   z-index: 3;
+}
+
+.headerWrapper {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100rem;
 }
 
 .left {
@@ -87,9 +93,13 @@
   color: #fff;
 }
 
+.right span:last-child {
+  background-color: var(--dark-1);
+}
+
 .right span:last-child.activeNav {
   outline: 2px solid var(--dark-2);
-  background-color: transparent;
+  /* background-color: transparent; */
   border-radius: 50%;
   outline-offset: 1px;
 }

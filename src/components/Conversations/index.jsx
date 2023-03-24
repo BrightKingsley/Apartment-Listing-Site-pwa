@@ -8,19 +8,23 @@ import classes from "./Conversations.module.css";
 import Conversation from "../Conversation";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
+import { AdminContext } from "../../context/AdminContext";
+import { Avatar, Skeleton, Typography } from "@mui/material";
+import ActivityIndicator from "../ActivityIndicator/index";
 
 const Conversations = () => {
   const { showSide } = useContext(StyleContext);
+
   /////////////////////////////////////////////////////////
   const [active, setActive] = useState(1);
 
-  const { userId } = useContext(AuthContext);
+  const { adminId, token } = useContext(AdminContext);
   const { convoLoading, conversations, getAllConversations } =
     useContext(ChatContext);
 
   useEffect(() => {
-    userId && getAllConversations();
-  }, [userId]);
+    adminId && getAllConversations(adminId, token);
+  }, [adminId]);
 
   /////////////////////////////////////////////////////////
 
@@ -32,7 +36,7 @@ const Conversations = () => {
       {/* <Search /> */}
       <div className={classes.chats}>
         {convoLoading ? (
-          <h2>Loading...</h2>
+          <ActivityIndicator variant="dash" color="accent" bg="trans" />
         ) : (
           conversations?.map((c, i) => (
             <Conversation
@@ -41,7 +45,7 @@ const Conversations = () => {
               index={i}
               setActive={setActive}
               conversation={c}
-              currentUser={userId}
+              currentUser={adminId}
             />
           ))
         )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,11 +24,12 @@ ChartJS.register(
   Filler
 );
 // console.log("width", window.innerWidth);
+let windowWidth;
 
 export const options = {
   maintainAspectRatio: false,
-  responsive: window.innerWidth > 640 ? true : false,
-  // responsive: false,
+  // responsive: windowWidth > 640 ? true : false,
+  responsive: false,
   borderWidth: 1.5,
   // scales: {
   //   x: {
@@ -116,15 +117,17 @@ data.datasets.sort(
 );
 
 const Chart = () => {
-  // const [width, setWidth] = {};
-  // useEffect(() => {
-  //   console.log(window.innerWidth);
-  //   setWidth(window.innerWidth);
-  //   if (window.innerWidth > 640) responsive = true;
-  //   else {
-  //     responsive = false;
-  //   }
-  // }, [setWidth]);
+  const [width, setWidth] = useState(null);
+  useEffect(() => {
+    setWidth(window.innerWidth);
+
+    window.addEventListener("resize", (e) => {
+      // console.log(e.target);
+      console.log("WINDOW", windowWidth);
+      setWidth(window.innerWidth);
+      windowWidth = window.innerWidth;
+    });
+  }, [width]);
 
   return (
     <div
@@ -132,8 +135,17 @@ const Chart = () => {
         overflowX: "scroll",
       }}
     >
-      <Line width={`${labels.length * 50}px`} options={options} data={data} />
-      {/* <Line width={`100%`} options={options} data={data} /> */}
+      <Line
+        // width={width < 640 ? labels.length * 50 :labels.length * 50}
+        width={800}
+        options={options}
+        data={data}
+      />
+
+      {/* <Line width={window.innerWidth} options={options} data={data} /> */}
+
+      {/* <Line width="400px" options={options} data={data} /> */}
+
       {/* <Line options={options} data={data} /> */}
     </div>
   );

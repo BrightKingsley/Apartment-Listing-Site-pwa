@@ -106,10 +106,6 @@
     overflow: clip;
   }
 
-  .subView:last-child {
-    cursor: pointer;
-  }
-
   .subView img {
     object-fit: cover;
     width: 100%;

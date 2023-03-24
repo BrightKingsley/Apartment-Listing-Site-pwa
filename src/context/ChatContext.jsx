@@ -12,9 +12,9 @@ import { getUser } from "../api/user";
 import { io } from "socket.io-client";
 
 export const ChatContext = createContext({
-  currentClient: null,
+  receiver: null,
   currentConversation: null,
-  setCurrentClient: () => {},
+  setReceiver: () => {},
   getCurrentConversation: () => {},
   conversations: null,
   getAllConversations: () => {},
@@ -29,13 +29,12 @@ export const ChatContext = createContext({
 });
 
 export const ChatContextProvider = ({ children }) => {
-  const { userId, token } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
-  const [conversations, setConversations] = useState(null);
+  const [conversations, setConversations] = useState([]);
   const [error, setError] = useState(null);
   const [msgLoading, setMsgLoading] = useState(false);
   const [convoLoading, setConvoLoading] = useState(false);
-  const [currentClient, setCurrentClient] = useState(null);
+  const [receiver, setReceiver] = useState(null);
   const [currentConversation, setCurrentConversation] = useState(null);
   const [socket, setSocket] = useState(null);
 
@@ -43,17 +42,21 @@ export const ChatContextProvider = ({ children }) => {
     setSocket(io("ws://localhost:3001"));
   }, []);
 
-  const getCurrentConversation = (conversation) => {
+  const getCurrentConversation = (conversation, token) => {
+    // console.log("GETTING", conversation);
     setCurrentConversation(conversation);
-    getAllMessages(conversation);
+    getAllMessages(conversation, token);
   };
 
-  const getAllConversations = async () => {
+  const getAllConversations = async (userId, token) => {
+    console.log("ID____", userId);
+
     setConvoLoading(true);
     try {
       const response = await getConversations(userId, token);
       const { conversations } = response.data;
       if (conversations) {
+        // console.log("GOTTEN_CONVOS", conversations);
         setConversations(conversations);
       } else {
         console.log(response.data);
@@ -65,7 +68,7 @@ export const ChatContextProvider = ({ children }) => {
     }
   };
 
-  const getAllMessages = async (conversation) => {
+  const getAllMessages = async (conversation, token) => {
     setMsgLoading(true);
     try {
       const response = await getMessages(conversation?._id, token);
@@ -86,8 +89,8 @@ export const ChatContextProvider = ({ children }) => {
       value={{
         currentConversation,
         getCurrentConversation,
-        currentClient,
-        setCurrentClient,
+        receiver,
+        setReceiver,
         conversations,
         getAllConversations,
         setConversations,

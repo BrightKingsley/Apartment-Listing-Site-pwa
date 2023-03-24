@@ -22,9 +22,8 @@ const ListingsPage = () => {
   const [currentListing, setCurrentListing] = useState(null);
   const [showNav, setShowNav] = useState(false);
   const [sort, setSort] = useState("date");
-  console.log("SORT", sort);
 
-  const { listings, loading, setLoading, loadListings } =
+  const { listings, params, loading, setLoading, loadListings } =
     useContext(listingContext);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const ListingsPage = () => {
   }, [setCurrentListing, listings]);
 
   useEffect(() => {
-    loadListings();
+    loadListings(sort);
     const viewed = localStorage.getItem("viewedListings");
     document.title = "Appartment Listing || Listing";
     setLoading(true);
@@ -50,7 +49,7 @@ const ListingsPage = () => {
     if (timer) {
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [sort, params]);
 
   const handleShowNav = (status) => {
     status ? setShowNav(status) : setShowNav((prevShowNav) => !prevShowNav);
@@ -72,21 +71,23 @@ const ListingsPage = () => {
                 </div>
               )}
               <p>Search results 530</p>
-              <Select
-                placeholder="select field"
-                selected={sort}
-                getSelected={setSort}
-                options={[
-                  { value: "date", label: "date" },
-                  { value: "type", label: "type" },
-                  { value: "price", label: "price" },
-                ]}
-              />
+              <span className={classes.select}>
+                <Select
+                  placeholder="select field"
+                  selected={sort}
+                  getSelected={setSort}
+                  options={[
+                    { value: "date", label: "date" },
+                    { value: "type", label: "type" },
+                    { value: "price", label: "price" },
+                  ]}
+                />
+              </span>
             </div>
 
             <div className={classes.listings}>
               {listings &&
-                listings.map((item) => (
+                listings?.map((item) => (
                   <Listing
                     listing={item}
                     key={Math.random()}

@@ -1,5 +1,6 @@
 .allClients {
   /* width: 20rem; */
+  position: relative;
   flex: 1;
   height: 100%;
   background-color: var(--dark-2);
@@ -8,6 +9,22 @@
   height: 100%;
   transition: all 0.2s ease-in-out;
 }
+
+button.clientListToggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.clientListToggle svg {
+  color: var(--light-1);
+}
+
 .allClients > div {
   height: 100%;
   overflow: scroll;
@@ -56,7 +73,8 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: var(--light-2);
+  background-color: var(--dark-1);
+  overflow: clip;
   z-index: 2;
 }
 
@@ -84,5 +102,11 @@
   }
   .allClients.showAllClients {
     transform: translateX(1px);
+  }
+}
+
+@media (min-width: 640px) {
+  button.clientListToggle {
+    display: none;
   }
 }

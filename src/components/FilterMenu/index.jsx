@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import Button from "../UI/Button";
 import Checkbox from "../Checkbox";
 import Increment from "../Increment";
@@ -8,6 +8,7 @@ import RangeInput from "../RangeInput";
 import classes from "./FilterMenu.module.css";
 import Hamburger from "../../svg/Hamburger";
 import { Button } from "@mui/material";
+import listingContext from "../../context/ListingContext";
 
 const priceMax = 10000;
 const priceMin = 0;
@@ -15,11 +16,56 @@ const areaMax = 1000;
 const areaMin = 10;
 
 const FilterMenu = ({ handleShowNav, showNav }) => {
-  const [priceRange, setPriceRange] = useState([200, 5000]);
+  const [priceRange, setPriceRange] = useState([priceMin, priceMax]);
   const [areaRange, setAreaRange] = useState([200, 5000]);
+  const [type, setType] = useState("");
+  // const [type, setType] = useState("");
+  // const [type, setType] = useState("");
+
+  const [filters, setFilters] = useState({
+    priceRange: { min: 0, max: 0 },
+    areaRange: { min: 0, max: 0 },
+    type: "",
+  });
+
+  const { setParams } = useContext(listingContext);
+
   const getPriceRange = (value) => {
     setPriceRange(value);
   };
+
+  useEffect(() => {
+    // const editFilterParams = (params) => {
+    //   if (params.charAt(0) === "&") {
+    //     const newParams = params.substring(1);
+    //     return newParams;
+    //   } else {
+    //     return params;
+    //   }
+    // };
+
+    const editedFilters = `&${
+      filters.type.length > 0 ? `type=${filters.type}` : ""
+    }${
+      filters.priceRange.min > 0
+        ? `&minPrice=${filters.priceRange.min}&maxPrice=${filters.priceRange.max}`
+        : ""
+    }${
+      filters.areaRange.min > 0
+        ? `&minArea=${filters.areaRange.min}&maxArea=${filters.areaRange.max}`
+        : ""
+    }`;
+
+    editedFilters.length > 1 && setParams(editedFilters);
+  }, [
+    filters,
+    filters.priceRange.min,
+    filters.priceRange.max,
+    filters.areaRange.min,
+    filters.areaRange.max,
+    filters.type,
+    setParams,
+  ]);
 
   const getAreaRange = (value) => {
     setAreaRange(value);
@@ -35,7 +81,19 @@ const FilterMenu = ({ handleShowNav, showNav }) => {
       <div className={classes.filterWrapper}>
         <div className={classes.filterSection}>
           <p>Property Type</p>
-          <PropertyTypeSelect />
+          <PropertyTypeSelect
+            type={type}
+            setType={
+              (type) => {
+                setType(type);
+                return setFilters((prev) => ({ ...prev, type }));
+              }
+              // setFilters((prev) => {
+              //   const newFilters = prev + `propertyType=${type}`;
+              //   return newFilters;
+              // })
+            }
+          />
         </div>
         <div className={classes.filterSection}>
           <p>Rental Period</p>
@@ -44,7 +102,7 @@ const FilterMenu = ({ handleShowNav, showNav }) => {
           <Checkbox label="Letly" />
           <Checkbox label="Innly" />
         </div>
-        <div className={classes.filterSection} action="submit">
+        <div className={classes.filterSection}>
           <p>Price Range</p>
           <RangeInput
             getRangeValue={getPriceRange}
@@ -93,6 +151,21 @@ const FilterMenu = ({ handleShowNav, showNav }) => {
               }}
               size="small"
               className={classes.OK}
+              onClick={() => {
+                return setFilters((prev) => ({
+                  ...prev,
+                  priceRange: {
+                    min: priceRange[0],
+                    max: priceRange[1],
+                  },
+                }));
+                // setFilters((prev) => {
+                //   const newFilters =
+                //     prev +
+                //     `&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+                //   return newFilters;
+                // });
+              }}
             >
               OK
             </Button>
@@ -156,6 +229,21 @@ const FilterMenu = ({ handleShowNav, showNav }) => {
               }}
               size="small"
               className={classes.OK}
+              onClick={() => {
+                return setFilters((prev) => ({
+                  ...prev,
+                  areaRange: {
+                    min: areaRange[0],
+                    max: areaRange[1],
+                  },
+                }));
+
+                // setFilters((prev) => {
+                //   const newFilters =
+                //     prev + `&minArea=${areaRange[0]}&maxArea=${areaRange[1]}`;
+                //   return newFilters;
+                // });
+              }}
             >
               OK
             </Button>
@@ -166,6 +254,26 @@ const FilterMenu = ({ handleShowNav, showNav }) => {
           <Checkbox label="Pets allowed" />
           <Checkbox label="Parking slot" />
           <Checkbox label="Furnished" />
+        </div>
+        <div className={classes.resetContainer}>
+          <Button
+            style={{
+              width: "100%",
+            }}
+            color="secondary"
+            disableElevation={true}
+            size="large"
+            variant="contained"
+            className={classes.reset}
+            onClick={() => {
+              setParams("");
+              setType("");
+              setPriceRange([priceMin, priceMax]);
+              setAreaRange([areaMin, areaMax]);
+            }}
+          >
+            reset
+          </Button>
         </div>
       </div>
     </div>

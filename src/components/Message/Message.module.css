@@ -17,6 +17,7 @@
   height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
+  background-color: var(--dark-1);
 }
 
 .messageContent {

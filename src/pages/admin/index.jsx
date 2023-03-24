@@ -6,21 +6,21 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { AdminContext } from "../../context/AdminContext";
+import Unauthorized from "../Unauthorized";
 
 const Index = () => {
-  // const { loggedIn } = useContext(AdminContext);
-  // const [loggedIn, setLoggedIn] = useState(false);
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   loggedIn ? navigate("dashboard") : navigate("login");
-  // }, [loggedIn, navigate]);
+  const { isAuth } = useContext(AdminContext);
 
   return (
     <div className={classes.admin}>
-      {/* {loggedIn && <SideNavbar />} */}
-      <SideNavbar />
-      <Outlet />
+      {isAuth ? (
+        <>
+          <SideNavbar />
+          <Outlet />
+        </>
+      ) : (
+        <Unauthorized page="/admin/auth/login" />
+      )}
     </div>
   );
 };

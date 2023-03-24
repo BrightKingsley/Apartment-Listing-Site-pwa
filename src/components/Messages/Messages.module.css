@@ -1,10 +1,14 @@
 .messages {
+  margin: 0 auto;
   padding: 0.425rem;
   padding-left: 1rem;
+  padding-right: 1rem;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   height: 100%;
+  width: 100%;
+  max-width: 60rem;
 }
 
 .msgPlaceholder {

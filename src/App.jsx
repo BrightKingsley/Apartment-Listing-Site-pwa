@@ -22,12 +22,16 @@ import NotFound from "./pages/NotFound";
 import Message from "./pages/client/MessagePage";
 
 //context
-import { AdminContextProvider } from "./context/AdminContext";
-import Auth from "./pages/auth";
-import Login from "./pages/auth/AdminLogin";
-import Signup from "./pages/auth/AdminSignup";
+import Auth from "./pages/client/auth";
+import AdminAuth from "./pages/admin/auth";
+import AdminLogin from "./pages/admin/auth/AdminLogin";
+import AdminSignup from "./pages/admin/auth/AdminSignup";
+import Login from "./pages/client/auth/Login";
+import Signup from "./pages/client/auth/Signup";
 import Modal from "./components/Modal";
 import Notification from "./components/Notification";
+import { useEffect, useState } from "react";
+import ActivityIndicator from "./components/ActivityIndicator";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,23 +47,25 @@ const router = createBrowserRouter(
         <Route index element={<ListingsPage />} />
         <Route path=":id" element={<DetailsPage />} />
         <Route path="details" element={<DetailsPage />} />
-        <Route path="message" element={<Message />} />
       </Route>
 
-      <Route path="/admin" element={<Admin />}>
-        {/* <Route index path="login" element={<Login />} /> */}
-        <Route path="auth" element={<Auth />}>
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
+      <Route path="message" element={<Message />} />
+
+      <Route path="/admin">
+        <Route path="auth" element={<AdminAuth />}>
+          <Route path="login" element={<AdminLogin />} />
+          <Route path="signup" element={<AdminSignup />} />
         </Route>
 
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route
-          path="add-listing"
-          // action={AddListingAction}
-          element={<AddListing />}
-        />
-        <Route path="messages" element={<Messages />} />
+        <Route element={<Admin />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route
+            path="add-listing"
+            // action={AddListingAction}
+            element={<AddListing />}
+          />
+          <Route path="messages" element={<Messages />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<NotFound />} />
@@ -68,13 +74,20 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return (
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  return loading ? (
+    // <ActivityIndicator />
+    <h1>Loading</h1>
+  ) : (
     <div className="App">
       <Modal />
       <Notification />
-      <AdminContextProvider>
-        <RouterProvider router={router} />
-      </AdminContextProvider>
+      <RouterProvider router={router} />
     </div>
   );
 }

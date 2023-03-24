@@ -3,25 +3,24 @@ import { useNavigate } from "react-router-dom";
 
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-import classes from "../authStyles.module.css";
+import classes from "../AdminAuthStyles.module.css";
 
 import { Link } from "react-router-dom";
-// import { signupUser } from "../../../api/auth";
-// import { UserContext } from "../../../context/UserContext";
-import { AuthContext } from "../../../context/AuthContext";
-import { NotificationContext } from "../../../context/NotificationContext";
+import { AdminContext } from "../../../../context/AdminContext";
+import { NotificationContext } from "../../../../context/NotificationContext";
 
 export default function Signup() {
   const navigate = useNavigate();
 
   // const { setUser } = useContext(UserContext);
-  const { user, loading, error, setError, signupHandler } =
-    useContext(AuthContext);
+  const { admin, loading, error, setError, signupHandler } =
+    useContext(AdminContext);
   const { triggerNotification } = useContext(NotificationContext);
 
   const [showPassword, setShowPassword] = useState(false);
 
   const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,20 +30,20 @@ export default function Signup() {
   }, []);
 
   useEffect(() => {
-    if (user?.id) {
-      console.log(user.id);
+    if (admin?.id) {
+      console.log(admin.id);
 
       setFirstName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
 
-      navigate("/listings");
+      navigate("/dashboard");
       triggerNotification("signed up");
     } else {
       return;
     }
-  }, [user?.id, error, navigate]);
+  }, [admin?.id, error, navigate]);
 
   // const [loading, setLoading] = useState(false);
   // const [err, setError] = useState(null);
@@ -53,8 +52,8 @@ export default function Signup() {
     e.preventDefault();
     // setLoading(true);
 
-    signupHandler(e, { firstname, email, password });
-    // const { user } = response.data;
+    signupHandler(e, { firstname, lastname, email, password });
+    // const { admin } = response.data;
     //   // setLoading(false);
     // } catch (error) {
     //   setError(error);
@@ -87,6 +86,21 @@ export default function Signup() {
           </div>
           <div>
             <input
+              value={lastname}
+              onChange={(e) => {
+                setLastName(e.target.value);
+                setError((prev) => {
+                  return { ...prev, lastname: "" };
+                });
+              }}
+              name="lastname"
+              type="text"
+              placeholder="lastname"
+            />
+            {error?.lastname && <p>{error.lastname}</p>}
+          </div>
+          <div>
+            <input
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -104,6 +118,7 @@ export default function Signup() {
             <div className={classes.passwordWrapper}>
               <input
                 value={password}
+                minLength={8}
                 onChange={(e) => {
                   setPassword(e.target.value);
                   setError((prev) => {

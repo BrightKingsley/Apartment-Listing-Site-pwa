@@ -6,6 +6,9 @@ import { getMessages } from "../../api/messages";
 import { ChatContext } from "../../context/ChatContext";
 import { StyleContext } from "../../context/StyleContext";
 import { convertLength } from "@mui/material/styles/cssUtils";
+import { AdminContext } from "../../context/AdminContext";
+
+import userProfile from "../../imgs/user.png";
 
 const Conversation = ({
   index,
@@ -15,8 +18,8 @@ const Conversation = ({
   currentUser,
 }) => {
   const { toggleSidebar } = useContext(StyleContext);
-  const { userId, token } = useContext(AuthContext);
-  const { setCurrentClient, messages, getCurrentConversation, getAllMessages } =
+  const { adminId, token } = useContext(AdminContext);
+  const { setReceiver, messages, getCurrentConversation, getAllMessages } =
     useContext(ChatContext);
 
   const [message, setMessage] = useState(null);
@@ -24,7 +27,7 @@ const Conversation = ({
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const clientId = conversation?.members.find((m) => m.id !== userId);
+    const clientId = conversation?.members.find((m) => m.id !== adminId);
 
     const getUserAndMsgsById = async () => {
       try {
@@ -37,7 +40,7 @@ const Conversation = ({
       }
     };
     getUserAndMsgsById();
-  }, [userId, token, conversation?.members, conversation?._id]);
+  }, [adminId, token, conversation?.members, conversation?._id]);
 
   return (
     <div
@@ -47,14 +50,13 @@ const Conversation = ({
       onClick={() => {
         setActive(index + 1);
         toggleSidebar(false);
-        setCurrentClient(client);
-        getCurrentConversation(conversation);
+        setReceiver(client);
+        getCurrentConversation(conversation, token);
       }}
     >
-      <img
-        src={client?.image ? client.image : `../../assets/${index + 1}.jpg`}
-        alt="user"
-      />
+      <span className={classes.conversationImg}>
+        <img src={client?.image ? client.image : userProfile} alt="" />
+      </span>
       <div className={classes.userChatInfo}>
         <span>{client?.firstname}</span>
 
