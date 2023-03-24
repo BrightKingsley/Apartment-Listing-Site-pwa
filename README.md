@@ -17,6 +17,21 @@ An app where users can find apartments and houses for sale or rent.
 
 - Fully Responsive
 
+![Screenshot from 2023-03-23 19-10-32](https://user-images.githubusercontent.com/110265893/227512716-f642d49e-4b16-4740-a5b4-b61a02250471.png)
+
+![Screenshot from 2023-03-24 12-41-28](https://user-images.githubusercontent.com/110265893/227512733-dcb01c22-5b87-49a7-89a7-f0c4160218df.png)
+
+![Screenshot from 2023-03-24 12-42-07](https://user-images.githubusercontent.com/110265893/227512737-ec497abd-54c5-4b8f-af48-f4c3126fb267.png)
+
+![Screenshot from 2023-03-24 12-42-54](https://user-images.githubusercontent.com/110265893/227512779-750ad440-be59-491b-bfa7-645e31b3eb16.png)
+
+![Screenshot from 2023-03-24 12-43-05](https://user-images.githubusercontent.com/110265893/227512786-333292f9-5e39-413b-b8df-3169f20f7979.png)
+
+![Screenshot from 2023-03-24 12-46-57](https://user-images.githubusercontent.com/110265893/227513338-1c1be722-619f-4684-93b8-5600d29d3476.png)
+
+![Screenshot from 2023-03-24 12-43-28](https://user-images.githubusercontent.com/110265893/227512800-3fc6428a-55eb-40ef-907a-61039de8af92.png)
+
+
 
 
 ![mobile (24)](https://user-images.githubusercontent.com/110265893/227506822-b41276ed-e57a-4746-b80d-f140a0b33d15.png)
