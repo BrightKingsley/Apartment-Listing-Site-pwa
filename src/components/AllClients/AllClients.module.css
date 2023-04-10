@@ -27,7 +27,7 @@ button.clientListToggle {
 
 .allClients > div {
   height: 100%;
-  overflow: scroll;
+  overflow-y: auto;
   padding-right: 1rem;
 }
 

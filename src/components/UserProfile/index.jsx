@@ -118,7 +118,17 @@ const UserProfile = ({ user, token, setUser, isAdmin }) => {
         />
       </div>
       <div className={classes.body}>
-        <span>Bookmarks</span>
+          {/* <div className={classes.payment}>
+            <p>Payment History</p>
+            <ul>
+              <li>20/12/4 --- $234</li>
+              <li>20/12/4 --- $234</li>
+              <li>20/12/4 --- $234</li>
+              <li>20/12/4 --- $234</li>
+              <li>20/12/4 --- $234</li>
+              <li>20/12/4 --- $234</li>
+            </ul>
+          </div> */}
         <Logout />
       </div>
     </div>

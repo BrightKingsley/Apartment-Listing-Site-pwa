@@ -56,19 +56,23 @@ export const ChatContextProvider = ({ children }) => {
       const response = await getConversations(userId, token);
       const { conversations } = response.data;
       if (conversations) {
-        // console.log("GOTTEN_CONVOS", conversations);
+        console.log("GOTTEN_CONVOS", conversations);
         setConversations(conversations);
+        setConvoLoading(false);
+        return conversations;
       } else {
-        console.log(response.data);
+        console.log("GOtten_RESponse", response.data);
         setError(response.data);
+        setConvoLoading(false);
+        return null;
       }
-      setConvoLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   const getAllMessages = async (conversation, token) => {
+    console.log("GET_CONVERSATION", conversation);
     setMsgLoading(true);
     try {
       const response = await getMessages(conversation?._id, token);

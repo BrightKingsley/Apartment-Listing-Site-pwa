@@ -81,3 +81,21 @@
 .userProfile .body {
   margin-top: 0.5rem;
 }
+
+.body .payment {
+  background-color: var(--light-2);
+  border-radius: 0.5rem;
+  padding: 0 0.3rem;
+  width: fit-content;
+}
+
+.body ul {
+  display: flex;
+  flex-direction: column;
+  height: 5rem;
+  overflow: scroll;
+}
+
+.body li{
+  margin-right: 0.5rem;
+}
