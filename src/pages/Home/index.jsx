@@ -207,7 +207,7 @@ const HomePage = () => {
                     </li>
                     <li className="nav_list">
                       <a href="/auth/signup" className="nav_link btn-primary">
-                        Sign up
+                        Sign Up
                       </a>
                     </li>
                   </div>
