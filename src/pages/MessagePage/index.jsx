@@ -25,19 +25,15 @@ const Message = () => {
   const [client, setClient] = useState(null);
 
   // const addNewConversation = async (receiverId) => {
-  //   console.log("CONVO_LENGTH", conversations.length);
   //   if (conversations.length < 1 && isAuth && userId) {
-  //     console.log(">---------CREATING--------->");
   //     try {
   //       const response = await addConversation({ userId, receiverId }, token);
   //       const { newConversation } = response.data;
-  //       console.log("NEW_CONVERSATION", newConversation);
   //       if (newConversation) {
   //         setConversations((prev) => [...prev, newConversation]);
   //         getAdmin();
   //       }
   //     } catch (error) {
-  //       console.log(error);
   //     }
   //   }
   // };
@@ -50,48 +46,39 @@ const Message = () => {
     try {
       const response = await getConversationAdmin(token);
       const admin = response.data;
-      console.log("ADMIN___!", admin);
 
       setClient(admin);
 
       if (admin) {
         const convos = await getAllConversations(userId, token);
-        console.log("CONVOSSS___><", convos);
         if (convos.length > 0) {
           getCurrentConversation(convos[0], token);
         } else {
-          console.log("else");
           // addNewConversation(client.id, true);
           if (!conversations.length > 0 && isAuth && userId) {
-            console.log("OKAy");
             try {
               const response = await addConversation(
                 { senderId: userId, receiverId: admin.id },
                 token
               );
-              console.log(">---------CREATED--------->");
               const { newConversation } = response.data;
-              console.log("NEW_CONVERSATION", newConversation);
               if (newConversation) {
                 count = 1;
                 setConversations((prev) => [...prev, newConversation]);
                 getCurrentConversation(newConversation, token);
               }
             } catch (error) {
-              console.log(error);
             }
           }
         }
       }
     } catch (error) {
-      console.log(error);
     }
   });
 
   useEffect(() => {
     socket?.emit("addUser", userId);
     socket?.on("getUsers", (users) => {
-      // console.log("SOCKET_USERS:", users);
     });
   }, [socket, socket?.id, isAuth, userId]);
 
@@ -100,7 +87,6 @@ const Message = () => {
 
     if (userId) {
       if (conversations.length < 1 && isAuth && userId && count < 1) {
-        console.log("running");
         count = 2;
         getConversation();
       }

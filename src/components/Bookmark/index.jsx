@@ -40,17 +40,13 @@ const Bookmark = ({ listingId }) => {
 
   const toggleBookmark = async () => {
     if (!bookmarked) {
-      console.log("11111reached------------------");
       const response = await addToBookmarks(listingId, token);
-      console.log(response.data);
       response.data.message === "worked" && setBookmarked(true);
       setUserById(userId, token);
     }
 
     if (bookmarked) {
-      console.log("22222reached------------------");
       const response = await removeFromBookmarks(listingId, token);
-      console.log("222RESPONSE", response.data);
       response.data.message === "worked" && setBookmarked(false);
       setUserById(userId, token);
     }

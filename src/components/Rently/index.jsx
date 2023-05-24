@@ -108,14 +108,12 @@ const DateTime = ({
 
     const response = await addClientDetails(data, token);
     const result = await response.data;
-    console.log("DONE:", result);
     if (result === "SUCCESS") {
       // triggerListingEdit();
       // setSubmitItems((prev) => ({ ...prev, dateTime: true }));
       setCurrentClientDetail(DRIVERS_LICENCE);
     } else {
       triggerNotification("Upload failed");
-      // console.log("upload failed");
     }
   };
 
@@ -173,13 +171,11 @@ const SocialSN = ({ currentClientDetail, setCurrentClientDetail, token }) => {
 
     const response = await addClientDetails(data, token);
     const result = await response.data;
-    console.log("DONE:", result);
     if (result === "SUCCESS") {
       // triggerListingEdit();
       setCurrentClientDetail(FACE_VERIFY);
     } else {
       // triggerNotification("Upload failed");
-      console.log("upload failed");
     }
   };
 
@@ -296,7 +292,6 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
 
     const response = await addClientDetails(data, token);
     const result = await response.data;
-    console.log("DONE:", result);
 
     if (result === "SUCCESS") {
       // triggerListingEdit();
@@ -305,7 +300,6 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
       );
     } else {
       // triggerNotification("Upload failed");
-      console.log("upload failed");
     }
   };
 
@@ -379,7 +373,6 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
               </label>
               <input
                 onChange={(e) => {
-                  console.log("BACK RUNNNG");
                   readURI(e, "back");
                   setBackImg(e.target.files);
                 }}
@@ -469,7 +462,6 @@ const FaceVerification = ({
   token,
 }) => {
   useEffect(() => {
-    console.log("FACE VERIFY RUNNING");
   }, []);
 
   return (
@@ -523,7 +515,6 @@ const Rently = () => {
 
   const Entry = () => {
     if (currentClientDetail === FACE_VERIFY) {
-      console.log("FACE_VERIF");
       return (
         <FaceVerification
           currentClientDetail={FACE_VERIFY}

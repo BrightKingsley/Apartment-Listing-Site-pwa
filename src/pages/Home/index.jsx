@@ -116,7 +116,6 @@ const HomePage = () => {
               const count = +counter.innerText;
               const increment = Math.trunc(target / speed);
               if (count < target && target > 0) {
-                console.log("working");
                 counter.innerText = Math.ceil(count + increment);
                 setTimeout(updateCount, 200);
               } else {
@@ -428,9 +427,9 @@ const HomePage = () => {
                 <p className="text-white">
                   Everything you need to know when you're looking
                 </p>
-                <a href="#!" className="btn">
+                <Link to="auth/signup" className="btn">
                   Get Started Now
-                </a>
+                </Link>
               </div>
               <div className="newsletter-image">
                 <img

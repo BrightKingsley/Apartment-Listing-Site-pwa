@@ -42,7 +42,7 @@ const DetailsPage = () => {
   const navigate = useNavigate();
 
   const navigateLogin = () => {
-    navigate("/auth/login");
+    navigate("/auth/login", { state: { source: `/listings/${id}` } });
   };
 
   useEffect(() => {

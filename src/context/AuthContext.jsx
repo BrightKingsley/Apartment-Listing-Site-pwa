@@ -71,12 +71,10 @@ export const AuthContextProvider = ({ children }) => {
 
     const expiryDate = localStorage.getItem("expiryDate");
     if (!savedToken || !expiryDate) {
-      console.log("ONe of these--------1");
       logoutHandler();
       return;
     }
     if (new Date(expiryDate) <= new Date()) {
-      console.log("ONe of these--------2");
       logoutHandler();
       return;
     }
@@ -107,13 +105,11 @@ export const AuthContextProvider = ({ children }) => {
         setAuthLoading(false);
         addTokenToLocalStorage(user.token, user.id);
         setUser(user);
-        console.log(user);
       } else {
         const { errors } = response.data;
         setError(errors);
       }
     } catch (error) {
-      console.log(error);
       setIsAuth(false);
       setAuthLoading(false);
       setError(error);
@@ -128,7 +124,6 @@ export const AuthContextProvider = ({ children }) => {
       const user = response.data;
 
       if (user?.token) {
-        console.log("LOGIN_RUNNING");
         setIsAuth(true);
         setToken(user.token);
         setAuthLoading(false);
@@ -139,12 +134,10 @@ export const AuthContextProvider = ({ children }) => {
         triggerNotification("logged in");
       } else {
         const { errors } = response.data;
-        console.log(errors);
         user?.isAdmin && setAdminWriteAccess(false);
         setError(errors);
       }
     } catch (error) {
-      console.log(error);
       setIsAuth(false);
       setAuthLoading(false);
       setError(error);

@@ -25,7 +25,6 @@ const Input = () => {
       text,
     };
 
-    console.log("SENDER", newMessage.senderId);
 
     socket?.emit("sendMessage", {
       senderId: userId || adminId,
