@@ -109,15 +109,16 @@ const HomePage = () => {
         (entries, observe) => {
           let [entry] = entries;
           if (!entry.isIntersecting) return;
-          const speed = 200;
+          const speed = 10;
           counters.forEach((counter) => {
             const updateCount = () => {
               const target = +counter.getAttribute("data-target");
               const count = +counter.innerText;
               const increment = Math.trunc(target / speed);
               if (count < target && target > 0) {
+                console.log("working");
                 counter.innerText = Math.ceil(count + increment);
-                setTimeout(updateCount, 40);
+                setTimeout(updateCount, 200);
               } else {
                 counter.innerText = target
                   .toString()
