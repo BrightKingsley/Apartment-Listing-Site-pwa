@@ -13,6 +13,7 @@
   justify-content: space-between;
   width: 100%;
   max-height: 95%;
+  min-height: 15rem;
   background-color: #fff;
   border-radius: 1rem;
   padding: 3rem 1.5rem 1rem;
@@ -225,6 +226,7 @@
 
 .unable {
   color: var(--error);
+  text-align: center;
 }
 
 @media (min-width: 640px) {

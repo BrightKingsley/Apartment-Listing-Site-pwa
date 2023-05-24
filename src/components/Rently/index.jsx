@@ -514,6 +514,7 @@ const FaceVerification = ({
   setCurrentClientDetail,
   token,
 }) => {
+  const [active, setActive] = useState(false);
   useEffect(() => {}, []);
 
   return (
@@ -524,6 +525,7 @@ const FaceVerification = ({
         screenshotFormat="image/jpeg"
         width={350}
         videoConstraints={videoConstraints}
+        onUserMedia={() => setActive(true)}
       />
       {/* {({ getScreenshot }) => (
           <button
@@ -543,9 +545,11 @@ const FaceVerification = ({
       {/* <div className={classes.faceCircleContainer}>
         <div className={classes.faceCircle} />
       </div> */}
-      <small className={classes.unable}>
-        unable to process face verification at the moment
-      </small>
+      {active && (
+        <small className={classes.unable}>
+          unable to process face verification at the moment
+        </small>
+      )}
     </>
   );
 };
