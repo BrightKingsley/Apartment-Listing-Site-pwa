@@ -397,19 +397,19 @@ const HomePage = () => {
             </div>
             <div className="counter-container">
               <div className="counter">
-                <h3 className="text-dark" data-target="250" ref={saleCount}>
+                <h3 className="text-dark" data-target="50" ref={saleCount}>
                   0
                 </h3>
                 <span className="text-dark-50">Homes For Sale</span>
               </div>
               <div className="counter">
-                <h3 className="text-dark" data-target="200" ref={soldCount}>
+                <h3 className="text-dark" data-target="25" ref={soldCount}>
                   0
                 </h3>
                 <span className="text-dark-50">Homes Recently Sold</span>
               </div>
               <div className="counter">
-                <h3 className="text-dark" data-target="210" ref={priceCount}>
+                <h3 className="text-dark" data-target="15" ref={priceCount}>
                   0
                 </h3>
                 <span className="text-dark-50">Price Reduced</span>
