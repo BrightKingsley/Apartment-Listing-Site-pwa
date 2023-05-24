@@ -1,0 +1,9 @@
+.price {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--dark-2);
+}
+
+.price small {
+  font-weight: lighter;
+}

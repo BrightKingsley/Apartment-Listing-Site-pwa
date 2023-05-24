@@ -1,0 +1,23 @@
+.notFound {
+  position: relative;
+  background: url("../../svg/not-found.svg"), no-repeat;
+
+  background-repeat: no-repeat;
+  /* background-position: bottom 0 right 4rem; */
+  background-position: center;
+  background-size: 60%;
+  height: 100vh;
+  background-color: var(--light-2);
+
+  width: 100vw;
+}
+
+.message {
+  position: absolute;
+  top: 8rem;
+  left: 7rem;
+}
+
+.message h2 {
+  color: var(--dark-2);
+}

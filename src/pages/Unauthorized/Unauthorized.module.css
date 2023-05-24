@@ -1,0 +1,38 @@
+.unauthorized {
+  background: url("../../svg/unauthorized.svg");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 100%;
+
+  width: 100vw;
+  height: 100vh;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  background-color: var(--light-2);
+  color: var(--dark-2);
+}
+
+.unauthorized > div {
+  padding-top: 10rem;
+  text-align: center;
+}
+
+.unauthorized h2 {
+  font-size: 2rem;
+}
+
+@media (min-width: 840px) {
+  .unauthorized {
+    background-size: 30%;
+  }
+
+  .unauthorized > div {
+    text-align: right;
+    margin-right: 1rem;
+  }
+
+  .unauthorized h2 {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,149 @@
+.detailsEdit {
+  z-index: 1;
+  position: absolute;
+  right: 4rem;
+  top: 0;
+}
+
+.edit svg {
+  color: var(--accent);
+  top: 1rem;
+  right: 3rem;
+  background-color: var(--light-2);
+  border-radius: 0.3rem;
+}
+
+.gridGallery {
+  display: none;
+}
+
+.preview {
+  display: none;
+  border-radius: 0;
+}
+
+.more {
+  display: none;
+}
+
+.carouselWrapper {
+  position: fixed;
+  margin-top: 4rem;
+}
+.carousel {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 15rem;
+  gap: 0.5rem;
+  /* grid-column: 1/-1;
+  grid-row: 1/4; */
+}
+
+.slide {
+  height: 15rem;
+}
+
+.slide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* /////////////////////////////////////////// */
+
+@media (min-width: 640px) {
+  .gridGallery {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    grid-column: 1/10;
+    grid-row: 1/11;
+    /* overflow: clip; */
+  }
+
+  .carousel {
+    display: none;
+  }
+
+  .preview {
+    display: inline-block;
+    flex: 1;
+    flex-shrink: 0;
+    background-color: var(--gray-2);
+    height: calc(100% - 7rem);
+    border-radius: 0.5rem;
+    overflow: clip;
+  }
+
+  .preview img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  .more {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    overflow-x: scroll;
+    padding-bottom: 0.5rem;
+  }
+
+  .subView {
+    flex-shrink: 0;
+    color: var(--accent);
+    height: 6rem;
+    width: 6rem;
+    background-color: var(--gray-2);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: clip;
+  }
+
+  .subView img {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+/* @media (max-width: 860px) { */
+@media (min-width: 1150px) {
+  .gridGallery {
+    flex-direction: row;
+    border-radius: 1rem;
+    overflow: clip;
+  }
+
+  .preview {
+    display: inline-block;
+    flex: none;
+    flex-shrink: 0;
+    background-color: var(--gray-2);
+    width: calc(100% - 7rem);
+    height: 100%;
+    border-radius: 0.5rem 0.2rem 0.2rem 0.5rem;
+    overflow: clip;
+  }
+
+  .more {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    border-radius: 0.2rem 0.5rem 0.5rem 0.2rem;
+    overflow-y: scroll;
+    /* padding-right: 1rem; */
+  }
+
+  .subView {
+    margin-right: 0.5rem;
+    border-radius: 0.2rem 0.5rem 0.5rem 0.2rem;
+  }
+}

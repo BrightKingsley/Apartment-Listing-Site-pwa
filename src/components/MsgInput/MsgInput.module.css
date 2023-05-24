@@ -1,0 +1,79 @@
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 35rem;
+  width: 90%;
+  height: 4rem;
+  align-self: center;
+  margin-bottom: 0.8rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--dark-2);
+  background: #f3fcf6d8;
+  padding: 0.3rem 0.5rem;
+}
+
+.input textarea {
+  resize: none;
+  width: 100%;
+  max-width: 30rem;
+  border: none;
+  outline: none;
+  background: transparent;
+
+  color: #011a12;
+  padding-left: 0.5rem;
+}
+
+.input textarea::placeholder {
+  color: gray;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.sendIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* // border: 1px solid black; */
+  /* width: 3.5rem;
+  height: 3.5rem; */
+
+  cursor: pointer;
+}
+
+.sendIcon svg {
+  fill: var(--accent);
+}
+
+.action button {
+  border: none;
+  display: none;
+  padding: 0.625rem 1rem;
+  color: #fff;
+  /* // background-color: #8da4f1; */
+  cursor: pointer;
+}
+
+.imgIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+.imgIcon svg {
+  fill: var(--dark-1);
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* .sendIcon svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: rgba(9, 175, 112, 0.76);
+} */

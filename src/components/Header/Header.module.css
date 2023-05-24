@@ -1,0 +1,130 @@
+.header {
+  position: fixed;
+  width: 100%;
+  border-bottom: 2px solid var(--gray-2);
+  padding: 0.5rem 3rem;
+  background-color: #fff;
+  z-index: 3;
+}
+
+.headerWrapper {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100rem;
+}
+
+.left {
+  color: var(--accent);
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* flex: 1; */
+}
+
+.header span {
+  cursor: pointer;
+}
+
+.right {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--dark-2);
+  gap: 0.5rem;
+}
+
+.right span {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+}
+
+.right span:last-child {
+  border-radius: 0.5rem;
+}
+
+.right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right a {
+  text-decoration: none;
+  color: var(--light-2);
+  background-color: var(--dark-2);
+  border-radius: 0.2rem;
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right .login {
+  background-color: transparent;
+  color: var(--dark-2);
+}
+
+.header nav ul {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navItem {
+  list-style: none;
+  padding: 0 1rem;
+  font-size: smaller;
+  text-overflow: initial;
+}
+
+.right span.activeNav {
+  background-color: var(--dark-2);
+  color: #fff;
+}
+
+.right span:last-child {
+  background-color: var(--dark-1);
+}
+
+.right span:last-child.activeNav {
+  outline: 2px solid var(--dark-2);
+  /* background-color: transparent; */
+  border-radius: 50%;
+  outline-offset: 1px;
+}
+
+@media (max-width: 860px) {
+  .header {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .right {
+    gap: 0.3rem;
+  }
+
+  .right div {
+    width: 1.5rem;
+  }
+
+  .right span {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: clip;
+    border-radius: 0.2rem;
+    transition: all 0.2s ease;
+  }
+}

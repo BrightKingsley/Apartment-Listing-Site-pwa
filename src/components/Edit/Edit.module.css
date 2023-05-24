@@ -1,0 +1,20 @@
+.editWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.edit svg {
+  color: var(--accent);
+  top: 1rem;
+  right: 3rem;
+  background-color: var(--light-2);
+  border-radius: 0.3rem;
+}
+.dropdown {
+  position: absolute;
+  margin-top: 2.5rem;
+  width: 10rem;
+}

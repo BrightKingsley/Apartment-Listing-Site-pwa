@@ -1,0 +1,113 @@
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  color: rgb(83, 83, 83);
+}
+
+.userProfile .top {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.userProfile .top > span {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 2rem; */
+}
+
+.profileImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: clip;
+  background-color: var(--dark-1);
+}
+
+.userProfile .top span img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit {
+  position: absolute;
+  bottom: -0.2rem;
+  right: -1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  outline: 2px solid var(--gray-1);
+  outline-offset: 3px;
+  background-color: var(--gray-1);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.edit:active {
+  transform: scale(0.9);
+}
+
+.inputSelect {
+  background-color: var(--dark-2);
+  position: relative;
+  color: var(--light-1);
+  font-size: smaller;
+  font-weight: bold;
+  padding: 0.15rem 0.2rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.1s ease;
+}
+
+.inputSelect:active {
+  transform: scale(0.5);
+}
+
+.dropdown {
+  /* background-color: red; */
+  border: 1px solid var(--dark-1);
+  min-width: 10rem;
+}
+
+.userProfile .body {
+  margin-top: 0.5rem;
+}
+
+.changePassword {
+  background-color: var(--light-2);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding:  0.3rem;
+  width: fit-content;
+  transition: all 0.3s;
+}
+
+.changePassword:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.changePassword:active {
+  transform: scale(0.9);
+  box-shadow: none;
+}
+
+.body ul {
+  display: flex;
+  flex-direction: column;
+  height: 5rem;
+  overflow: scroll;
+}
+
+.body li {
+  margin-right: 0.5rem;
+}

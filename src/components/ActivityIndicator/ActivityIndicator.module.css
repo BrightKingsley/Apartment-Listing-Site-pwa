@@ -1,0 +1,32 @@
+.activityContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100vw;
+  height: 100vh; */
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: var(--light-2);
+}
+
+.dash {
+  position: relative;
+}
+
+.activityWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: var(--light-2); */
+}
+
+@media (min-width: 640px) {
+  .activityWrapper {
+    max-width: 50rem;
+    max-width: 50rem;
+  }
+}

@@ -1,0 +1,53 @@
+.dropDown-slide-enter {
+  animation: showDropDown 0.2s ease-out forwards;
+}
+.dropDown-slide-enter-active {
+  animation: showingDropDown 0.2s ease-out forwards;
+}
+.dropDown-slide-exit {
+  animation: hideDropDown 0.2s ease-out forwards;
+}
+.dropDown-slide-exit-active {
+  animation: hidingDropDown 0.2s ease-out forwards;
+}
+
+@keyframes showDropDown {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+@keyframes showingDropDown {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(5%);
+    opacity: 1;
+  }
+}
+@keyframes hideDropDown {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+}
+@keyframes hidingDropDown {
+  0% {
+    transform: translateY(5%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+}

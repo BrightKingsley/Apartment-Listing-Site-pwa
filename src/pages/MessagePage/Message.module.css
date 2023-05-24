@@ -1,0 +1,9 @@
+.message {
+  /* height: calc(100vh - 61px); */
+  height: 100vh;
+}
+
+.chatContainer {
+  height: 100%;
+  padding-top: 4rem;
+}

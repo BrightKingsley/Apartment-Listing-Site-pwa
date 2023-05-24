@@ -1,0 +1,44 @@
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input label {
+  /* font-size: small; */
+}
+
+.input input,
+.input textarea {
+  border-radius: 1rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+  border: 1px solid rgba(7, 89, 75, 0.212);
+  transition: all 0.1s;
+}
+
+.input input {
+  height: 4rem;
+}
+
+.input input:focus,
+.input textarea:focus {
+  outline: 3px solid var(--dark-2);
+  outline-offset: 1px;
+}
+
+.input input:hover,
+.input textarea:hover {
+  background-color: var(--light-3);
+}
+
+@media (max-width: 860px) {
+  .input input {
+    height: 4rem;
+    border-radius: 0.3rem;
+  }
+
+  .input input,
+  .input textarea {
+    border-radius: 0.5rem;
+  }
+}

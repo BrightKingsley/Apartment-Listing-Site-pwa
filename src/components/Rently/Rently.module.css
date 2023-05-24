@@ -1,0 +1,231 @@
+.rentlyWrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rently {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 95%;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 3rem 1.5rem 1rem;
+  /* padding-top: 4rem; */
+  z-index: 1001;
+  position: relative;
+}
+
+.notice {
+  color: #5e5e5e;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.noticeTextContainer {
+  height: 30rem;
+  overflow-y: auto;
+}
+.note p {
+  color: var(--accent);
+}
+.note small {
+  color: var(--error);
+}
+
+.listingImg {
+  height: 12rem;
+  border-radius: 0.4rem;
+  overflow: clip;
+}
+
+.listingImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--gray-1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close svg {
+  color: var(--gray-1);
+}
+
+.text {
+  font-size: 1rem;
+  text-align: center;
+  color: #5e5e5e;
+  font-weight: 500;
+  padding: 1rem 0;
+}
+
+.side {
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.location {
+  margin-top: 1rem;
+  text-align: center;
+  color: #757575;
+  font-size: 0.9rem;
+}
+
+.location span {
+  font-size: 1.5rem;
+  color: #929191;
+}
+
+.input {
+  width: full;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.cardImage {
+  width: 15rem;
+  height: 8rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  display: flex;
+  justify-content: start;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardImage svg {
+  width: 8rem;
+  height: 8rem;
+  color: var(--gray-1);
+  margin-left: 0;
+}
+
+.input input {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--accent);
+  outline: 1px solid var(--accent);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.otp {
+  display: flex;
+}
+
+.otpInput {
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.otpInput input {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  outline: 3px solid lightgray;
+  transition: all 0.3s;
+  margin: 0 0.3rem;
+}
+
+.otpInput input:focus {
+  outline: 3px solid var(--accent);
+  /* outline: 1px solid var(--accent); */
+}
+
+.select {
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.inputSelect {
+  transition: all 2s ease-in-out;
+}
+
+.inputSelect :hover {
+  box-shadow: inset 0 2px 4px 5px rgba(0, 0, 0, 0.05);
+}
+
+.dateTime {
+  margin-bottom: 4rem;
+}
+
+.upload {
+  margin-bottom: 1rem;
+}
+
+.actionBtn {
+  width: 100%;
+  height: 3rem;
+}
+
+.close > svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.activityIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faceCircleContainer {
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faceCircle {
+  border-radius: 100%;
+  border: 4px solid var(--dark-1);
+  background-color: transparent;
+  width: 8rem;
+  height: 10rem;
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+}
+
+.unable {
+  color: var(--error);
+}
+
+@media (min-width: 640px) {
+  .rently {
+    width: 25rem;
+  }
+}

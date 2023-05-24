@@ -1,0 +1,98 @@
+#footer {
+  .myLogo h2 {
+    font-size: 2rem;
+    color: $primary;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+
+  // @include p(3rem 0);
+  @include p(1.95rem 0);
+  .footer-container {
+    display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15.6rem, 1fr));
+    // gap: 2rem;
+    gap: 1.3rem;
+    & .footer-item {
+      & .footer-heading {
+        // @include p(1rem 0);
+        @include p(0.65rem 0);
+      }
+      & .footer-links {
+        & li {
+          // @include m(1rem 0);
+          @include m(0.65rem 0);
+          & .footer-link {
+            color: #71717e;
+            font-weight: 400;
+          }
+        }
+      }
+      & .text-dark {
+        color: #71717e;
+      }
+      & .social-links {
+        & li {
+          // margin: 2rem 0.3rem;
+          margin: 1.3rem 0.195rem;
+          display: inline-block;
+          // width: 1.95rem;
+          width: 3rem;
+          // height: 1.95rem;
+          height: 3rem;
+          background: #f9f9f9;
+          text-align: center;
+          line-height: 3rem;
+        }
+      }
+    }
+  }
+  & .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // @include p(4rem 0 2rem 0);
+    @include p(2.6rem 0 1.3rem 0);
+    // gap: 1rem;
+    gap: 0.65rem;
+  }
+}
+
+.scroll-btn {
+  position: fixed;
+  // right: 1rem;
+  right: 0.65rem;
+  // bottom: 1rem;
+  bottom: 0.65rem;
+  z-index: 10;
+  // width: 3.7rem;
+  width: 2.4rem;
+  // height: 3.7rem;
+  height: 2.4rem;
+  background: $newsletter-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border-radius: 1rem;
+  border-radius: 0.65rem;
+  // box-shadow: 0 0 0.3rem 0.1rem $newsletter-bg;
+  box-shadow: 0 0 0.195rem 0.065rem $newsletter-bg;
+  cursor: pointer;
+  opacity: 0;
+  // transform: translateY(-10rem);
+  transform: translateY(-6.5rem);
+  transition: $transition;
+  &.active {
+    opacity: 1;
+    transition: $transition;
+    transform: translateY(0);
+  }
+  & img {
+    // width: 2.7rem;
+    width: 1.755rem;
+    // height: 2.7rem;
+    height: 1.755rem;
+  }
+}

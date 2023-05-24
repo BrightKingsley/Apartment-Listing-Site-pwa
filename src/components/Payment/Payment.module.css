@@ -1,0 +1,12 @@
+.payment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--light-1);
+  border-radius: 0.5rem;
+}
+
+.payment div {
+  display: flex;
+  align-items: center;
+}

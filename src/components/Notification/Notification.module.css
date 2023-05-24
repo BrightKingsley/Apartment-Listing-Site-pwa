@@ -1,0 +1,44 @@
+.notification {
+  position: fixed;
+  padding: 1rem;
+  bottom: 4rem;
+  right: 4rem;
+  width: 20rem;
+  /* height: 5rem; */
+  background-color: #fff;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+  z-index: 1001;
+  transition: all 0.5s ease;
+  overflow: scroll;
+}
+
+.notification > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification > span > svg {
+  fill: var(--accent);
+}
+
+.notification p {
+  text-transform: capitalize;
+}
+
+@media (max-width: 640px) {
+  .notification {
+    width: 90%;
+    height: 3rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    top: 0rem;
+    inset: 0;
+    margin: 0 auto;
+  }
+}
