@@ -31,6 +31,10 @@
 
 .noticeTextContainer {
   /* height: 30rem; */
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: 1.2rem;
   font: bold;
@@ -182,6 +186,10 @@
 .actionBtn {
   width: 100%;
   height: 3rem;
+}
+
+.close {
+  z-index: 2000;
 }
 
 .close > svg {

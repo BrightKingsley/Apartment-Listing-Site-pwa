@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Bookmark from "../../components/Bookmark";
 import DetailsGallery from "../../components/DetailsGallery";
@@ -23,21 +23,25 @@ import { IconButton } from "@mui/material";
 import Edit from "../../components/Edit";
 import MessageLink from "../../components/FloatingMessage/index";
 import ListingEdit from "../../components/ListingEdit";
-import { CheckoutContext } from "../../context/CheckoutContext";
+// import { CheckoutContext } from "../../context/CheckoutContext";
 import Checkout from "../../components/Checkout";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalContext } from "../../context/ModalContext";
 import { RentlyContext } from "../../context/RentlyContext";
 
+let tourClicked = false;
 const DetailsPage = () => {
   const { currentListing, loadListing, triggerListingEdit, showListingEdit } =
     useContext(listingContext);
-  const { triggerCheckout } = useContext(CheckoutContext);
+  // const { triggerCheckout } = useContext(CheckoutContext);
   const { isAuth } = useContext(AuthContext);
   const { triggerModal } = useContext(ModalContext);
   const { triggerRently } = useContext(RentlyContext);
 
   const { id } = useParams();
+  const location = useLocation();
+
+  const source = location.state?.source;
 
   const navigate = useNavigate();
 
@@ -50,12 +54,21 @@ const DetailsPage = () => {
     loadListing(id);
   }, []);
 
-  const handleClickRent = () => {
-    navigate("../message");
-  };
-  const handleClickContact = () => {
-    navigate("../message");
-  };
+  useEffect(() => {
+    console.log("SOURCE===>", source);
+    !tourClicked &&
+      currentListing &&
+      source &&
+      triggerRently(true, currentListing);
+    tourClicked = true;
+  }, [currentListing, source, triggerRently]);
+
+  // const handleClickRent = () => {
+  //   navigate("../message");
+  // };
+  // const handleClickContact = () => {
+  //   navigate("../message");
+  // };
 
   const handleClickTour = () => {
     isAuth

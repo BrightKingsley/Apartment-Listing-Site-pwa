@@ -362,7 +362,7 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
                 Enter photo of{" "}
                 {currentClientDetail === CREDIT_CARD
                   ? "credit card (front and back)"
-                  : "drivers licence"}
+                  : "national ID/drivers licence"}
               </p>
             </div>
             <div className={classes.cardInput}>

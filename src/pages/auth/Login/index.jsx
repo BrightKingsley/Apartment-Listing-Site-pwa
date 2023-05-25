@@ -31,7 +31,7 @@ export default function Login() {
       setEmail("");
       setPassword("");
 
-      navigate(source || "/listings");
+      navigate(source || "/listings", { state: location.state });
     } else {
       // console.log(error);
       return;
