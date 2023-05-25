@@ -58,7 +58,7 @@ const Header = ({ searchbar }) => {
           />
         )}
         <div className={classes.right}>
-          {searchbar && <SearchInput />}
+          {/* {searchbar && <SearchInput />} */}
           {showAccountItems ? (
             <>
               <span
