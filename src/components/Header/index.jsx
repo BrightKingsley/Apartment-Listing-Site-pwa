@@ -4,7 +4,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Bookmarks from "../Bookmarks";
 import Notifications from "../Notifications";
 import Panel from "../Panel";
-// import SearchInput from "../SearchInput";
+import SearchInput from "../SearchInput";
 import UserProfile from "../UserProfile";
 import ProfileImg from "../ProfileImg";
 import profileImg from "../../imgs/user.png";
@@ -58,7 +58,7 @@ const Header = ({ searchbar }) => {
           />
         )}
         <div className={classes.right}>
-          {/* {searchbar && <SearchInput />} */}
+          {searchbar && <SearchInput />}
           {showAccountItems ? (
             <>
               <span

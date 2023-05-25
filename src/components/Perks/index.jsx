@@ -1,6 +1,6 @@
 import {
   BathtubTwoTone,
-  GasMeterRounded,
+  BedRounded,
   SquareFootRounded,
 } from "@mui/icons-material";
 import React from "react";
@@ -13,10 +13,12 @@ const Perks = ({ listing }) => {
   return (
     <div className={classes.perks}>
       <small>
-        <GasMeterRounded />{listing.rooms}
+        <BedRounded />
+        {listing.bedrooms}
       </small>
       <small>
-        <BathtubTwoTone />{listing.bathrooms}
+        <BathtubTwoTone />
+        {listing.bathrooms}
       </small>
       <small>
         <SquareFootRounded />
