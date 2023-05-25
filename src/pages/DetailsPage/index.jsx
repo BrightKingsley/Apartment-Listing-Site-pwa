@@ -211,7 +211,7 @@ const DetailsPage = () => {
                 </span>
                 <div>
                   <small>Deposits & Fees</small>
-                  <small>{currentListing.deposit}</small>
+                  <small>{currentListing.deposits}</small>
                 </div>
               </div>
             </div>
