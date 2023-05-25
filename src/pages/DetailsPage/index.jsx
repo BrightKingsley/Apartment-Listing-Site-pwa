@@ -33,7 +33,7 @@ let tourClicked = false;
 const DetailsPage = () => {
   const { currentListing, loadListing, triggerListingEdit, showListingEdit } =
     useContext(listingContext);
-  // const { triggerCheckout } = useContext(CheckoutContext);
+
   const { isAuth } = useContext(AuthContext);
   const { triggerModal } = useContext(ModalContext);
   const { triggerRently } = useContext(RentlyContext);
