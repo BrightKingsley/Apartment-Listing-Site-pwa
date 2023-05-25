@@ -114,11 +114,11 @@ const DetailsPage = () => {
               <span className={classes.bookmarkWrapper}>
                 <Bookmark listingId={currentListing._id} />
               </span>
-              <span onClick={handleShare} className={classes.share}>
+              {/* <span onClick={handleShare} className={classes.share}>
                 <IconButton>
                   <ShareOutlined />
                 </IconButton>
-              </span>
+              </span> */}
             </div>
 
             <h2>{currentListing.title}</h2>
