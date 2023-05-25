@@ -60,7 +60,7 @@ const DetailsPage = () => {
       currentListing &&
       source &&
       triggerRently(true, currentListing);
-    tourClicked = true;
+    tourClicked = currentListing && source;
   }, [currentListing, source, triggerRently]);
 
   // const handleClickRent = () => {
