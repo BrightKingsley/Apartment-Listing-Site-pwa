@@ -14,12 +14,10 @@ import ActivityIndicator from "../../components/ActivityIndicator";
 import {
   FamilyRestroomOutlined,
   GarageRounded,
-  ShareOutlined,
   Stairs,
   WashRounded,
 } from "@mui/icons-material";
 import { FaMoneyBill, FaPaw } from "react-icons/fa";
-import { IconButton } from "@mui/material";
 import Edit from "../../components/Edit";
 import MessageLink from "../../components/FloatingMessage/index";
 import ListingEdit from "../../components/ListingEdit";
@@ -28,6 +26,7 @@ import Checkout from "../../components/Checkout";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalContext } from "../../context/ModalContext";
 import { RentlyContext } from "../../context/RentlyContext";
+import { CheckoutContext } from "../../context/CheckoutContext";
 
 let tourClicked = false;
 const DetailsPage = () => {
@@ -37,6 +36,7 @@ const DetailsPage = () => {
   const { isAuth } = useContext(AuthContext);
   const { triggerModal } = useContext(ModalContext);
   const { triggerRently } = useContext(RentlyContext);
+  const { triggerCheckout } = useContext(CheckoutContext);
 
   const { id } = useParams();
   const location = useLocation();
@@ -61,7 +61,8 @@ const DetailsPage = () => {
       source &&
       triggerRently(true, currentListing);
     tourClicked = currentListing && source;
-  }, [currentListing, source, triggerRently]);
+  //}, [currentListing, source, triggerRently]);
+  }, []);
 
   // const handleClickRent = () => {
   //   navigate("../message");
@@ -79,8 +80,6 @@ const DetailsPage = () => {
           () => triggerModal
         );
   };
-
-  const handleShare = () => {};
 
   return currentListing ? (
     <>
@@ -131,14 +130,14 @@ const DetailsPage = () => {
               />
               <div className={classes.section1Links}>
                 {/* NOTE */}
-                {/* <button
+                <button
                   className={classes.rentNow}
                   onClick={() => {
                     triggerCheckout();
                   }}
                 >
                   Rent Now
-                </button> */}
+                </button>
                 <Link className={classes.contactAgent} to="/message">
                   Contact Agent
                 </Link>
@@ -182,6 +181,7 @@ const DetailsPage = () => {
                 <span>
                   <Stairs />
                 </span>
+                login
                 <div>
                   <small>Flooring</small>
                   <small>{currentListing.flooring}</small>
