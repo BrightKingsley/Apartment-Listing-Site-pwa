@@ -2,8 +2,13 @@ import client from "./client";
 
 const endpoint = "/user";
 export const getUser = (userId, token) => {
-  client.setHeader("Authorization", "Bearer " + token);
-  return client.get(`${endpoint}/${userId}`);
+  // client.setHeader("Authorization", "Bearer " + token);
+  // client.set
+  return client.get(`${endpoint}/${userId}`, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };
 
 export const updateUser = (token, body) => {
