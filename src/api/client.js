@@ -5,7 +5,7 @@ const apiClient = axios.create({
   baseURL: WEB_SERVER,
   headers: {
     "Content-Type": "application/json",
-    // Add other default headers here
+    "Access-Control-Allow-Origin": "https://raale-brightkingsley.onrender.com",
   },
 });
 
