@@ -1,8 +1,8 @@
-import { create } from "apisauce";
+import axios from "axios";
 import { WEB_SERVER } from "../constants";
 
-const apiClient = create({
-  baseURL: process.env.WEB_SERVER,
+const apiClient = axios.create({
+  baseURL: WEB_SERVER,
 });
 
 export default apiClient;
