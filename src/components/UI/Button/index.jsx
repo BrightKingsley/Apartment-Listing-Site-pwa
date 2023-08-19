@@ -26,7 +26,7 @@ const Button = ({ children, onClick, type }) => {
     sety(e.layerY);
     // sety(e.clientY - e.target.offsetTop);
     triggerRipple();
-    onClick();
+    typeof OnCLick === "function" && onClick();
   };
 
   return (

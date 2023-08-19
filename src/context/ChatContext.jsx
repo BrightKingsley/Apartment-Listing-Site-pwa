@@ -44,36 +44,30 @@ export const ChatContextProvider = ({ children }) => {
   }, []);
 
   const getCurrentConversation = (conversation, token) => {
-    // console.log("GETTING", conversation);
     setCurrentConversation(conversation);
     getAllMessages(conversation, token);
   };
 
   const getAllConversations = async (userId, token) => {
-    console.log("ID____", userId);
 
     setConvoLoading(true);
     try {
       const response = await getConversations(userId, token);
       const { conversations } = response.data;
       if (conversations) {
-        console.log("GOTTEN_CONVOS", conversations);
         setConversations(conversations);
         setConvoLoading(false);
         return conversations;
       } else {
-        console.log("GOtten_RESponse", response.data);
         setError(response.data);
         setConvoLoading(false);
         return null;
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
   const getAllMessages = async (conversation, token) => {
-    console.log("GET_CONVERSATION", conversation);
     setMsgLoading(true);
     try {
       const response = await getMessages(conversation?._id, token);
@@ -81,11 +75,9 @@ export const ChatContextProvider = ({ children }) => {
       if (messages) {
         setMessages(messages);
       } else {
-        console.log(response.data);
       }
       setMsgLoading(false);
     } catch (error) {
-      console.log(error);
     }
   };
 

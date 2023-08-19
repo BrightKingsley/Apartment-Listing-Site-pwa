@@ -7,11 +7,8 @@ const NotFound = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log("works");
-        console.log(position);
         const { latitude: lat, longitude: lng } = position.coords;
         const LatLng = [lat, lng];
-        console.log(LatLng);
       },
       () => {
         alert("Could not get your position");

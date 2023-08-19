@@ -109,7 +109,7 @@ const HomePage = () => {
         (entries, observe) => {
           let [entry] = entries;
           if (!entry.isIntersecting) return;
-          const speed = 200;
+          const speed = 10;
           counters.forEach((counter) => {
             const updateCount = () => {
               const target = +counter.getAttribute("data-target");
@@ -117,7 +117,7 @@ const HomePage = () => {
               const increment = Math.trunc(target / speed);
               if (count < target && target > 0) {
                 counter.innerText = Math.ceil(count + increment);
-                setTimeout(updateCount, 40);
+                setTimeout(updateCount, 200);
               } else {
                 counter.innerText = target
                   .toString()
@@ -207,7 +207,7 @@ const HomePage = () => {
                     </li>
                     <li className="nav_list">
                       <a href="/auth/signup" className="nav_link btn-primary">
-                        Sign up
+                        Sign Up
                       </a>
                     </li>
                   </div>
@@ -397,19 +397,19 @@ const HomePage = () => {
             </div>
             <div className="counter-container">
               <div className="counter">
-                <h3 className="text-dark" data-target="250" ref={saleCount}>
+                <h3 className="text-dark" data-target="50" ref={saleCount}>
                   0
                 </h3>
                 <span className="text-dark-50">Homes For Sale</span>
               </div>
               <div className="counter">
-                <h3 className="text-dark" data-target="200" ref={soldCount}>
+                <h3 className="text-dark" data-target="25" ref={soldCount}>
                   0
                 </h3>
                 <span className="text-dark-50">Homes Recently Sold</span>
               </div>
               <div className="counter">
-                <h3 className="text-dark" data-target="210" ref={priceCount}>
+                <h3 className="text-dark" data-target="15" ref={priceCount}>
                   0
                 </h3>
                 <span className="text-dark-50">Price Reduced</span>
@@ -427,9 +427,9 @@ const HomePage = () => {
                 <p className="text-white">
                   Everything you need to know when you're looking
                 </p>
-                <a href="#!" className="btn">
+                <Link to="auth/signup" className="btn">
                   Get Started Now
-                </a>
+                </Link>
               </div>
               <div className="newsletter-image">
                 <img

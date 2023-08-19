@@ -3,6 +3,7 @@ import classes from "./Dropdown.module.css";
 import "./Dropdown.css";
 import { CSSTransition } from "react-transition-group";
 import Button from "../UI/Button/index";
+import { motion, AnimatePresence } from "framer-motion";
 // import { Button } from "@mui/material";
 
 const Dropdown = ({

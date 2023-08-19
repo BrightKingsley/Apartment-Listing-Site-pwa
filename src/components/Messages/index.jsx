@@ -20,7 +20,6 @@ const Messages = () => {
 
   useEffect(() => {
     socket?.on("getMessage", (message) => {
-      console.log("ARRIVALMESSAGE", message);
       setArrivalMessage({
         conversationId: currentConversation?._id,
         senderId: message?.senderId,

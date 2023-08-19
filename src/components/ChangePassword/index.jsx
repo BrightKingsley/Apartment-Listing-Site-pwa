@@ -18,14 +18,11 @@ const ChangePassword = ({ changePassword, setChangePassword }) => {
   const { triggerNotification } = useContext(NotificationContext);
 
   useEffect(() => {
-    console.log("CHange");
   }, []);
 
   const handleSubmit = async () => {
-    console.log("RUNNING");
     try {
       const response = await updateUser(token, { prevPassword, newPassword });
-      console.log("RESPONSE", response);
       const { user } = response.data;
       if (user) {
         triggerNotification("password changed successfully");

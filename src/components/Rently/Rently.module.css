@@ -13,6 +13,7 @@
   justify-content: space-between;
   width: 100%;
   max-height: 95%;
+  min-height: 15rem;
   background-color: #fff;
   border-radius: 1rem;
   padding: 3rem 1.5rem 1rem;
@@ -29,7 +30,14 @@
 }
 
 .noticeTextContainer {
-  height: 30rem;
+  /* height: 30rem; */
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font: bold;
   overflow-y: auto;
 }
 .note p {
@@ -180,6 +188,10 @@
   height: 3rem;
 }
 
+.close {
+  z-index: 2000;
+}
+
 .close > svg {
   width: 2rem;
   height: 2rem;
@@ -222,6 +234,7 @@
 
 .unable {
   color: var(--error);
+  text-align: center;
 }
 
 @media (min-width: 640px) {

@@ -19,7 +19,6 @@ const Ripple = ({ children, onClick, onMouseEnter, type, className }) => {
   }, [showRipple, setShowRipple]);
 
   const handleClick = (e) => {
-    console.log(e.target);
     setx(e.clientX - e.target.offsetLeft);
     sety(e.clientY - e.target.offsetTop);
     // sety(e.layerY);

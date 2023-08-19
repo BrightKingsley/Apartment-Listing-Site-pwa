@@ -59,33 +59,47 @@ const NOTICE = "notice";
 const FACE_VERIFY = "face-verification";
 
 const Notice = ({ setCurrentClientDetail, token }) => {
+  const [loading, setLoading] = useState(false);
+
   const handleProceedNotice = () => {
+    setLoading(true);
     setCurrentClientDetail(DATE_TIME);
+    setLoading(false);
   };
 
   return (
     <>
-      <div className={classes.notice}>
-        <div className={classes.noticeTextContainer}>Start Verification</div>
-
-        <div className={classes.actionBtn}>
-          <Button
-            disableElevation={true}
-            style={{
-              backgroundColor: "#ff6f00",
-              color: "#fff",
-              fontWeight: "bold",
-              width: "100%",
-              height: "100%",
-            }}
-            onClick={() => {
-              handleProceedNotice();
-            }}
-          >
-            Proceed
-          </Button>
+      {loading ? (
+        <div className={classes.activityIndicator}>
+          <ActivityIndicator variant="dash" color="accent" bg="trans" />
         </div>
-      </div>
+      ) : (
+        <>
+          <div className={classes.notice}>
+            <div className={classes.noticeTextContainer}>
+              Start Verification Process
+            </div>
+
+            <div className={classes.actionBtn}>
+              <Button
+                disableElevation={true}
+                style={{
+                  backgroundColor: "#ff6f00",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  width: "100%",
+                  height: "100%",
+                }}
+                onClick={() => {
+                  handleProceedNotice();
+                }}
+              >
+                Proceed
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -97,127 +111,148 @@ const DateTime = ({
   token,
 }) => {
   const [dateTime, setDatetime] = useState("");
+  const [loading, setLoading] = useState(false);
   // const [s ubmitDate, setSubmitDate] = useState(false);
 
   const { triggerNotification } = useContext(NotificationContext);
 
   const handleSubmitDateTime = async () => {
+    setLoading(true);
     const data = dateTime && {
       dateTime,
     };
 
     const response = await addClientDetails(data, token);
     const result = await response.data;
-    console.log("DONE:", result);
     if (result === "SUCCESS") {
       // triggerListingEdit();
       // setSubmitItems((prev) => ({ ...prev, dateTime: true }));
+      setLoading(false);
       setCurrentClientDetail(DRIVERS_LICENCE);
     } else {
       triggerNotification("Upload failed");
-      // console.log("upload failed");
+      setLoading(false);
     }
   };
 
   return (
     <>
-      <div className={classes.dateTime}>
-        <div className={classes.text}>
-          <p>Choose a date and time when you want to see this property</p>
+      {loading ? (
+        <div className={classes.activityIndicator}>
+          <ActivityIndicator variant="dash" color="accent" bg="trans" />
         </div>
-        <div className={classes.listingImg}>
-          <img src={listing.images[0]} alt="" />
-        </div>
-        <div className={classes.location}>
-          <span>
-            <FaMapMarkerAlt />
-          </span>
-          <p>This is the exact loaction of the apartment</p>
-        </div>
-        <div className={classes.input}>
-          <input
-            value={dateTime}
-            onChange={(e) => setDatetime(e.target.value)}
-            type="datetime-local"
-          />
-        </div>
-      </div>
-      <div className={classes.actionBtn}>
-        <Button
-          disableElevation={true}
-          style={{
-            backgroundColor: "#ff6f00",
-            color: "#fff",
-            fontWeight: "bold",
-            width: "100%",
-            height: "100%",
-          }}
-          onClick={() => {
-            handleSubmitDateTime();
-          }}
-        >
-          Continue
-        </Button>
-      </div>
+      ) : (
+        <>
+          <div className={classes.dateTime}>
+            <div className={classes.text}>
+              <p>Choose a date and time when you want to see this property</p>
+            </div>
+            <div className={classes.listingImg}>
+              <img src={listing.images[0]} alt="" />
+            </div>
+            <div className={classes.location}>
+              <span>
+                <FaMapMarkerAlt />
+              </span>
+              <p>This is the exact loaction of the apartment</p>
+            </div>
+            <div className={classes.input}>
+              <input
+                value={dateTime}
+                onChange={(e) => setDatetime(e.target.value)}
+                type="datetime-local"
+              />
+            </div>
+          </div>
+          <div className={classes.actionBtn}>
+            <Button
+              disableElevation={true}
+              style={{
+                backgroundColor: "#ff6f00",
+                color: "#fff",
+                fontWeight: "bold",
+                width: "100%",
+                height: "100%",
+              }}
+              onClick={() => {
+                handleSubmitDateTime();
+              }}
+            >
+              Continue
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
 };
 
 const SocialSN = ({ currentClientDetail, setCurrentClientDetail, token }) => {
   const [ssn, setSsn] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmitSSN = async () => {
+    setLoading(true);
     const data = {
       ssn,
     };
 
     const response = await addClientDetails(data, token);
     const result = await response.data;
-    console.log("DONE:", result);
     if (result === "SUCCESS") {
       // triggerListingEdit();
+      setLoading(false);
       setCurrentClientDetail(FACE_VERIFY);
     } else {
+      setLoading(false);
+
       // triggerNotification("Upload failed");
-      console.log("upload failed");
     }
   };
 
   return (
     <>
-      <div>
-        <div className={classes.text}>
-          <p>Please enter your Social Security Number (SSN)</p>
+      {loading ? (
+        <div className={classes.activityIndicator}>
+          <ActivityIndicator variant="dash" color="accent" bg="trans" />
         </div>
-        <div className={classes.input}>
-          <input
-            value={ssn}
-            onChange={(e) => setSsn(e.target.value)}
-            type="number"
-            style={{
-              letterSpacing: "4px",
-            }}
-          />
-        </div>
-      </div>
+      ) : (
+        <>
+          <div>
+            <div className={classes.text}>
+              <p>Please enter your Social Security Number (SSN)</p>
+            </div>
+            <div className={classes.input}>
+              <input
+                value={ssn}
+                onChange={(e) => setSsn(e.target.value)}
+                type="number"
+                style={{
+                  letterSpacing: "4px",
+                }}
+              />
+            </div>
+          </div>
 
-      <div className={classes.actionBtn}>
-        <Button
-          disableElevation={true}
-          style={{
-            backgroundColor: "#ff6f00",
-            color: "#fff",
-            fontWeight: "bold",
-            width: "100%",
-            height: "100%",
-          }}
-          onClick={() => {
-            handleSubmitSSN();
-          }}
-        >
-          Continue
-        </Button>
-      </div>
+          <div className={classes.actionBtn}>
+            <Button
+              disableElevation={true}
+              style={{
+                backgroundColor: "#ff6f00",
+                color: "#fff",
+                fontWeight: "bold",
+                width: "100%",
+                height: "100%",
+              }}
+              onClick={() => {
+                handleSubmitSSN();
+              }}
+            >
+              Continue
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -255,6 +290,7 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
   const [back, setBack] = useState("");
   const [backImg, setBackImg] = useState("");
   const { triggerNotification } = useContext(NotificationContext);
+  const [loading, setLoading] = useState(false);
 
   const readURI = (e, side) => {
     if (e.target.files && e.target.files[0]) {
@@ -271,6 +307,7 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
   };
 
   const handleSubmitImg = async () => {
+    setLoading(true);
     let data;
 
     if (!front) {
@@ -296,119 +333,128 @@ const Upload = ({ currentClientDetail, setCurrentClientDetail, token }) => {
 
     const response = await addClientDetails(data, token);
     const result = await response.data;
-    console.log("DONE:", result);
 
     if (result === "SUCCESS") {
       // triggerListingEdit();
+      setLoading(false);
+
       setCurrentClientDetail(
         currentClientDetail === CREDIT_CARD ? SSN : CREDIT_CARD
       );
     } else {
+      setLoading(false);
+
       // triggerNotification("Upload failed");
-      console.log("upload failed");
     }
   };
 
   return (
     <>
-      <div className={classes.upload}>
-        <div className={classes.text}>
-          <p>
-            Enter photo of{" "}
-            {currentClientDetail === CREDIT_CARD
-              ? "credit card (front and back)"
-              : "drivers licence"}
-          </p>
+      {loading ? (
+        <div className={classes.activityIndicator}>
+          <ActivityIndicator variant="dash" color="accent" bg="trans" />
         </div>
-        <div className={classes.cardInput}>
-          {currentClientDetail === CREDIT_CARD && (
-            <p className={classes.side}>front:</p>
-          )}
-          <div className={classes.cardImage}>
-            {
-              front ? (
-                <img src={front ? front : ""} alt="card" />
-              ) : currentClientDetail === CREDIT_CARD ? (
-                <CreditCard />
-              ) : (
-                <FaIdCard />
-              )
-              // <CameraAlt />
-            }
-          </div>
-          <div>
-            <label htmlFor="front" className={classes.inputSelect}>
-              <div className={classes.select}>
-                {/* <CreditCard /> */}
-                <CameraAlt />
-
-                {front ? <p>select another image</p> : <p>select image</p>}
-              </div>
-            </label>
-            <input
-              onChange={(e) => {
-                readURI(e, "front");
-                setFrontImg(e.target.files);
-              }}
-              accept="image/*"
-              hidden
-              id="front"
-              type="file"
-            />
-          </div>
-        </div>
-        <br />
-        {currentClientDetail === CREDIT_CARD && (
-          <div className={classes.cardInput}>
-            <p className={classes.side}>back:</p>
-            <div className={classes.cardImage}>
-              {back ? (
-                <img src={back ? back : ""} alt="card" />
-              ) : (
-                <CreditCard />
+      ) : (
+        <>
+          <div className={classes.upload}>
+            <div className={classes.text}>
+              <p>
+                Enter photo of{" "}
+                {currentClientDetail === CREDIT_CARD
+                  ? "credit card (front and back)"
+                  : "national ID/drivers licence"}
+              </p>
+            </div>
+            <div className={classes.cardInput}>
+              {currentClientDetail === CREDIT_CARD && (
+                <p className={classes.side}>front:</p>
               )}
-            </div>
-            <div>
-              <label htmlFor="back" className={classes.inputSelect}>
-                <div className={classes.select}>
-                  {/* <CreditCard /> */}
-                  <CameraAlt />
+              <div className={classes.cardImage}>
+                {
+                  front ? (
+                    <img src={front ? front : ""} alt="card" />
+                  ) : currentClientDetail === CREDIT_CARD ? (
+                    <CreditCard />
+                  ) : (
+                    <FaIdCard />
+                  )
+                  // <CameraAlt />
+                }
+              </div>
+              <div>
+                <label htmlFor="front" className={classes.inputSelect}>
+                  <div className={classes.select}>
+                    {/* <CreditCard /> */}
+                    <CameraAlt />
 
-                  {back ? <p>select another image</p> : <p>select image</p>}
-                </div>
-              </label>
-              <input
-                onChange={(e) => {
-                  console.log("BACK RUNNNG");
-                  readURI(e, "back");
-                  setBackImg(e.target.files);
-                }}
-                accept="image/*"
-                hidden
-                id="back"
-                type="file"
-              />
+                    {front ? <p>select another image</p> : <p>select image</p>}
+                  </div>
+                </label>
+                <input
+                  onChange={(e) => {
+                    readURI(e, "front");
+                    setFrontImg(e.target.files);
+                  }}
+                  accept="image/*"
+                  hidden
+                  id="front"
+                  type="file"
+                />
+              </div>
             </div>
+            <br />
+            {currentClientDetail === CREDIT_CARD && (
+              <div className={classes.cardInput}>
+                <p className={classes.side}>back:</p>
+                <div className={classes.cardImage}>
+                  {back ? (
+                    <img src={back ? back : ""} alt="card" />
+                  ) : (
+                    <CreditCard />
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="back" className={classes.inputSelect}>
+                    <div className={classes.select}>
+                      {/* <CreditCard /> */}
+                      <CameraAlt />
+
+                      {back ? <p>select another image</p> : <p>select image</p>}
+                    </div>
+                  </label>
+                  <input
+                    onChange={(e) => {
+                      readURI(e, "back");
+                      setBackImg(e.target.files);
+                    }}
+                    accept="image/*"
+                    hidden
+                    id="back"
+                    type="file"
+                  />
+                </div>
+              </div>
+            )}{" "}
           </div>
-        )}{" "}
-      </div>
-      <div className={classes.actionBtn}>
-        <Button
-          disableElevation={true}
-          style={{
-            backgroundColor: "#ff6f00",
-            color: "#fff",
-            fontWeight: "bold",
-            width: "100%",
-            height: "100%",
-          }}
-          onClick={() => {
-            handleSubmitImg();
-          }}
-        >
-          Continue
-        </Button>
-      </div>
+          <div className={classes.actionBtn}>
+            <Button
+              disableElevation={true}
+              style={{
+                backgroundColor: "#ff6f00",
+                color: "#fff",
+                fontWeight: "bold",
+                width: "100%",
+                height: "100%",
+              }}
+              onClick={() => {
+                handleSubmitImg();
+              }}
+            >
+              Continue
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -468,9 +514,8 @@ const FaceVerification = ({
   setCurrentClientDetail,
   token,
 }) => {
-  useEffect(() => {
-    console.log("FACE VERIFY RUNNING");
-  }, []);
+  const [active, setActive] = useState(false);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -480,6 +525,7 @@ const FaceVerification = ({
         screenshotFormat="image/jpeg"
         width={350}
         videoConstraints={videoConstraints}
+        onUserMedia={() => setActive(true)}
       />
       {/* {({ getScreenshot }) => (
           <button
@@ -499,9 +545,11 @@ const FaceVerification = ({
       {/* <div className={classes.faceCircleContainer}>
         <div className={classes.faceCircle} />
       </div> */}
-      <small className={classes.unable}>
-        unable to process face verification at the moment
-      </small>
+      {active && (
+        <small className={classes.unable}>
+          unable to process face verification at the moment
+        </small>
+      )}
     </>
   );
 };
@@ -523,7 +571,6 @@ const Rently = () => {
 
   const Entry = () => {
     if (currentClientDetail === FACE_VERIFY) {
-      console.log("FACE_VERIF");
       return (
         <FaceVerification
           currentClientDetail={FACE_VERIFY}

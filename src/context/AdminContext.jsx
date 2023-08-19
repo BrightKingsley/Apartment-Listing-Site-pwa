@@ -71,19 +71,16 @@ export const AdminContextProvider = ({ children }) => {
     const expiryDate = localStorage.getItem("adminExpiryDate");
 
     if (!savedToken || !expiryDate || !savedId) {
-      console.log("ONe of these--------1");
       // logoutHandler();
       return;
     }
     if (new Date(expiryDate) <= new Date()) {
-      console.log("ONe of these--------2");
       // logoutHandler();
       return;
     }
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
 
-    // console.log("REACHeD------->");
     setIsAuth(true);
     setAuthLoading(false);
     setToken(savedToken);
@@ -99,7 +96,6 @@ export const AdminContextProvider = ({ children }) => {
     try {
       const response = await signupAdmin(authData, token);
       const admin = response.data;
-      console.log(admin);
 
       if (admin.token) {
         setIsAuth(true);
@@ -110,14 +106,12 @@ export const AdminContextProvider = ({ children }) => {
         addTokenToLocalStorage(admin.token, admin.id);
         setAdmin(admin);
         setAdminWriteAccess(true);
-        console.log(admin);
         triggerNotification("admin signed up");
       } else {
         const { errors } = response.data;
         setError(errors);
       }
     } catch (error) {
-      console.log(error);
       setIsAuth(false);
       setAuthLoading(false);
       setError(error);
@@ -142,11 +136,9 @@ export const AdminContextProvider = ({ children }) => {
         triggerNotification("admin logged in");
       } else {
         const { errors } = response.data;
-        console.log(errors);
         setError(errors);
       }
     } catch (error) {
-      console.log(error);
       setIsAuth(false);
       setAuthLoading(false);
       setError(error);
@@ -158,8 +150,6 @@ export const AdminContextProvider = ({ children }) => {
   // };
 
   // const logoutHandler = () => {
-  //   // console.log(admin, adminId, isAuth);
-  //   console.log("LOGGING_OUT=======>");
   //   setIsAuth(false);
   //   setToken(null);
   //   setAdmin(null);

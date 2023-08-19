@@ -15,7 +15,6 @@ const ListingEdit = () => {
   const [showModal, setShowModal] = useState(true);
   const [selectedImages, setSelectedImages] = useState([]);
   const [images, setImages] = useState([]);
-  console.log("VALUE", fieldValue);
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => handleKey(e));
@@ -40,7 +39,6 @@ const ListingEdit = () => {
 
   const handleSubmit = async () => {
     if (fieldValue.length > 1 || selectedImages.length > 1) {
-      console.log("SUBMITTING", images);
       const data =
         images.length > 0
           ? {
@@ -52,7 +50,6 @@ const ListingEdit = () => {
       // setShowModal(false);
       // triggerListingEdit();
       const done = await editListingProperties(data);
-      console.log("DONE:", done);
       if (done === "success") {
         setShowModal(false);
         setField(null);
@@ -94,7 +91,6 @@ const ListingEdit = () => {
             </p>
             <Input
               getImages={(imgs) => {
-                console.log("IMGS", imgs);
                 setImages((prev) => [...prev, ...imgs]);
                 readURI(imgs);
               }}

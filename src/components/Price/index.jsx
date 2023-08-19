@@ -5,7 +5,8 @@ const Price = ({ price, duration }) => {
   return (
     <p className={classes.price}>
       ${price}
-      <small>/{duration}</small>
+      {/* <small>/{duration}</small> */}
+      <small>/month</small>
     </p>
   );
 };

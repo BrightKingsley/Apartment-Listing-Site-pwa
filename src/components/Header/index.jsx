@@ -53,6 +53,7 @@ const Header = ({ searchbar }) => {
 
         {user?.isAdmin && (
           <Switch
+            defaultChecked={false}
             onChange={(e) => setAdminWriteAccess((prev) => !prev)}
             color="accent"
           />

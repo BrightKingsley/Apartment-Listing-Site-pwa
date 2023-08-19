@@ -32,7 +32,6 @@ const UserProfile = ({ user, token, setUser }) => {
   const handleFileSubmit = async () => {
     try {
       const response = await updateUser(token, { image: img });
-      console.log("RES_DATA", response.data);
       const profile = response.data.user || response.data.admin;
       if (profile) {
         setUser(profile);
@@ -41,10 +40,8 @@ const UserProfile = ({ user, token, setUser }) => {
         triggerNotification("Profile update failed");
         setImageURI(user?.image);
         setConfirm(false);
-        return console.log("Failed");
       }
     } catch (error) {
-      console.log(error);
     }
   };
 

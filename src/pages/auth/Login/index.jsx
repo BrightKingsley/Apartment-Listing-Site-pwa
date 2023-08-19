@@ -4,11 +4,14 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 import classes from "../authStyles.module.css";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const source = location.state?.source;
 
   const { isAuth, loading, error, setError, loginHandler } =
     useContext(AuthContext);
@@ -28,12 +31,12 @@ export default function Login() {
       setEmail("");
       setPassword("");
 
-      navigate("/listings");
+      navigate(source || "/listings", { state: location.state });
     } else {
       // console.log(error);
       return;
     }
-  }, [isAuth, error, navigate]);
+  }, [isAuth, error, source, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,10 +44,17 @@ export default function Login() {
     loginHandler(e, { email, password });
   };
 
+  const handleLinkToSignup = () => {
+    navigate("../signup", { state: location.state });
+  };
+
   return (
     <div className={`${classes.formContainer} ${classes.login}`}>
       <p>
-        Don't have an account? <Link to="../signup">signup</Link>
+        Don't have an account?{" "}
+        <span className={classes.link} onClick={handleLinkToSignup}>
+          signup
+        </span>
       </p>
       <div className={classes.formWrapper}>
         <p className={classes.title}>Login</p>

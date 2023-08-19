@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Bookmark from "../../components/Bookmark";
 import DetailsGallery from "../../components/DetailsGallery";
@@ -14,35 +14,39 @@ import ActivityIndicator from "../../components/ActivityIndicator";
 import {
   FamilyRestroomOutlined,
   GarageRounded,
-  ShareOutlined,
   Stairs,
   WashRounded,
 } from "@mui/icons-material";
 import { FaMoneyBill, FaPaw } from "react-icons/fa";
-import { IconButton } from "@mui/material";
 import Edit from "../../components/Edit";
 import MessageLink from "../../components/FloatingMessage/index";
 import ListingEdit from "../../components/ListingEdit";
-import { CheckoutContext } from "../../context/CheckoutContext";
+// import { CheckoutContext } from "../../context/CheckoutContext";
 import Checkout from "../../components/Checkout";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalContext } from "../../context/ModalContext";
 import { RentlyContext } from "../../context/RentlyContext";
+import { CheckoutContext } from "../../context/CheckoutContext";
 
+let tourClicked = false;
 const DetailsPage = () => {
   const { currentListing, loadListing, triggerListingEdit, showListingEdit } =
     useContext(listingContext);
-  const { triggerCheckout } = useContext(CheckoutContext);
+
   const { isAuth } = useContext(AuthContext);
   const { triggerModal } = useContext(ModalContext);
   const { triggerRently } = useContext(RentlyContext);
+  const { triggerCheckout } = useContext(CheckoutContext);
 
   const { id } = useParams();
+  const location = useLocation();
+
+  const source = location.state?.source;
 
   const navigate = useNavigate();
 
   const navigateLogin = () => {
-    navigate("/auth/login");
+    navigate("/auth/login", { state: { source: `/listings/${id}` } });
   };
 
   useEffect(() => {
@@ -50,12 +54,22 @@ const DetailsPage = () => {
     loadListing(id);
   }, []);
 
-  const handleClickRent = () => {
-    navigate("../message");
-  };
-  const handleClickContact = () => {
-    navigate("../message");
-  };
+  useEffect(() => {
+    console.log("SOURCE===>", source);
+    !tourClicked &&
+      currentListing &&
+      source &&
+      triggerRently(true, currentListing);
+    tourClicked = currentListing && source;
+  //}, [currentListing, source, triggerRently]);
+  }, []);
+
+  // const handleClickRent = () => {
+  //   navigate("../message");
+  // };
+  // const handleClickContact = () => {
+  //   navigate("../message");
+  // };
 
   const handleClickTour = () => {
     isAuth
@@ -66,8 +80,6 @@ const DetailsPage = () => {
           () => triggerModal
         );
   };
-
-  const handleShare = () => {};
 
   return currentListing ? (
     <>
@@ -101,11 +113,11 @@ const DetailsPage = () => {
               <span className={classes.bookmarkWrapper}>
                 <Bookmark listingId={currentListing._id} />
               </span>
-              <span onClick={handleShare} className={classes.share}>
+              {/* <span onClick={handleShare} className={classes.share}>
                 <IconButton>
                   <ShareOutlined />
                 </IconButton>
-              </span>
+              </span> */}
             </div>
 
             <h2>{currentListing.title}</h2>
@@ -118,14 +130,14 @@ const DetailsPage = () => {
               />
               <div className={classes.section1Links}>
                 {/* NOTE */}
-                {/* <button
+                <button
                   className={classes.rentNow}
                   onClick={() => {
                     triggerCheckout();
                   }}
                 >
                   Rent Now
-                </button> */}
+                </button>
                 <Link className={classes.contactAgent} to="/message">
                   Contact Agent
                 </Link>
@@ -169,6 +181,7 @@ const DetailsPage = () => {
                 <span>
                   <Stairs />
                 </span>
+                login
                 <div>
                   <small>Flooring</small>
                   <small>{currentListing.flooring}</small>
@@ -198,7 +211,7 @@ const DetailsPage = () => {
                 </span>
                 <div>
                   <small>Deposits & Fees</small>
-                  <small>{currentListing.deposit}</small>
+                  <small>{currentListing.deposits}</small>
                 </div>
               </div>
             </div>

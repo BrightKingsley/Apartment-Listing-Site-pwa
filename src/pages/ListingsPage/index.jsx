@@ -60,7 +60,7 @@ const ListingsPage = () => {
       {(!listings || loading) && <ActivityIndicator />}
       {/* <div style={{ display: loading ? "none" : "block" }}> */}
       <div>
-        <Header searchbar={true} />
+        <Header searchbar={false} />
         <main className={classes.main}>
           <FilterMenu handleShowNav={handleShowNav} showNav={showNav} />
           <div className={classes.listingsSection}>

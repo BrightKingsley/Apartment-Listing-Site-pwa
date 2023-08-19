@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
@@ -11,6 +11,10 @@ import { NotificationContext } from "../../../context/NotificationContext";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const source = location.state?.source;
+
 
   // const { setUser } = useContext(UserContext);
   const { user, loading, error, setError, signupHandler } =
@@ -32,7 +36,6 @@ export default function Signup() {
 
   useEffect(() => {
     if (user?.id) {
-      console.log(user.id);
 
       setFirstname("");
       setLastname("");
@@ -40,12 +43,12 @@ export default function Signup() {
       setPassword("");
       setConfirmPassword("");
 
-      navigate("/listings");
+      navigate(source || "/listings");
       triggerNotification("signed up");
     } else {
       return;
     }
-  }, [user?.id, error, navigate, triggerNotification]);
+  }, [user?.id, error, source, navigate, triggerNotification]);
 
   // const [loading, setLoading] = useState(false);
   // const [err, setError] = useState(null);
@@ -66,7 +69,10 @@ export default function Signup() {
   return (
     <div className={classes.formContainer}>
       <p>
-        Already have an account? <Link to="../login">login</Link>
+        Already have an account?{" "}
+        <Link className={classes.link} to="../login">
+          login
+        </Link>
       </p>
       <div className={classes.formWrapper}>
         <p className={classes.title}>Signup</p>

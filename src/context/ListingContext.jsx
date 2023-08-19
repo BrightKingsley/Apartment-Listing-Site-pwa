@@ -34,7 +34,6 @@ export const ListingContextProvider = (props) => {
   const { triggerNotification } = useContext(NotificationContext);
 
   const loadListings = async (sort) => {
-    // console.log("__LOADING__");
     const response = await getListings(token, sort, params);
     setListings(response.data?.listings);
   };
@@ -46,17 +45,14 @@ export const ListingContextProvider = (props) => {
       if (listing) {
         setCurrentListing(listing);
       } else {
-        console.log(response?.data);
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
   const removeListing = async (listingId) => {
     try {
       const response = await deleteListing(listingId, token);
-      console.log(response.data);
       if (response.data.message === "success") {
         triggerNotification("listing deleted successfully");
         loadListings();
@@ -64,7 +60,6 @@ export const ListingContextProvider = (props) => {
         return;
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -77,11 +72,9 @@ export const ListingContextProvider = (props) => {
         triggerNotification("listing updated successfully");
         return "success";
       } else {
-        console.log("RESPONSE------>", response.data);
         return "failed";
       }
     } catch (error) {
-      console.log(error);
       return "failed";
     }
   };

@@ -28,7 +28,6 @@ const CheckoutHook = () => {
 
   const onSuccess = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
     if (reference.status === "success") {
       triggerNotification("payment successful");
     } else {
