@@ -26,10 +26,15 @@ function LocationMarker({
 
   const [refReady, setRefReady] = useState(false);
 
-  let markerRef = useRef([]);
+  let markerRef = useRef();
 
   useEffect(() => {
-    autoShowPopup && refReady && markerRef.current?.openOn(listing?.coords);
+   const marker = markerRef.current;
+    if(marker && autoShowPopup){
+        marker.openPopup()
+    }
+    // && refReady && markerRef.current?.openOn(listing?.coords);
+    
     // markerRef.current = markerRef.current.slice(0, listings?.length);
   }, [listing, listing?._id, listing?.coords, autoShowPopup, refReady]);
 
