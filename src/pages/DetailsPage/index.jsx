@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Bookmark from "../../components/Bookmark";
@@ -26,43 +26,94 @@ import Checkout from "../../components/Checkout";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalContext } from "../../context/ModalContext";
 import { RentlyContext } from "../../context/RentlyContext";
-import { CheckoutContext } from "../../context/CheckoutContext";
+// import Button from "../../components/UI/Button";
+import { NotificationContext } from "../../context/NotificationContext";
+import { usePaystackPayment } from "react-paystack";
+import { Button } from "@mui/material";
 
-let tourClicked = false;
+let actionExecuted = false;
 const DetailsPage = () => {
   const { currentListing, loadListing, triggerListingEdit, showListingEdit } =
     useContext(listingContext);
 
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, user } = useContext(AuthContext);
   const { triggerModal } = useContext(ModalContext);
+  const { triggerNotification } = useContext(NotificationContext);
   const { triggerRently } = useContext(RentlyContext);
-  const { triggerCheckout } = useContext(CheckoutContext);
 
   const { id } = useParams();
   const location = useLocation();
 
   const source = location.state?.source;
+  const action = location.state?.action;
 
   const navigate = useNavigate();
 
-  const navigateLogin = () => {
-    navigate("/auth/login", { state: { source: `/listings/${id}` } });
+  const onSuccess = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    if (reference.status === "success") {
+      triggerNotification("payment successful");
+    } else {
+      triggerNotification("payment failed");
+    }
+  };
+
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    triggerNotification("checkout closed");
+  };
+
+  const [config, setConfig] = useState({
+    reference: new Date().getTime().toString(),
+    email: user ? user.email : "",
+    amount:
+      currentListing && currentListing.price ? currentListing.price * 100 : 0, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    publicKey: "pk_test_bd2ebc6e0df8b4fd0bab4bce8c082598afa44ed9",
+  });
+
+  const initializePayment = usePaystackPayment(config);
+
+  const navigateLogin = (action) => {
+    actionExecuted = action;
+    navigate("/auth/login", { state: { source: `/listings/${id}`, action } });
   };
 
   useEffect(() => {
     document.title = "Raale. || Details";
     loadListing(id);
-  }, []);
+  }, [id, loadListing]);
 
   useEffect(() => {
-    console.log("SOURCE===>", source);
-    !tourClicked &&
-      currentListing &&
-      source &&
-      triggerRently(true, currentListing);
-    tourClicked = currentListing && source;
-  //}, [currentListing, source, triggerRently]);
-  }, []);
+    if (!currentListing || !user) return;
+    setConfig((prev) => ({
+      ...prev,
+      amount: currentListing.price * 1000,
+      email: user.email,
+    }));
+  }, [currentListing, user]);
+
+  useEffect(() => {
+    if (actionExecuted && currentListing && source) {
+      console.log("REACHED");
+      if (action === "tour") {
+        console.log("ACTION_IS: ", action);
+        actionExecuted = false;
+        triggerRently(true, currentListing);
+      } else if (action === "rent") {
+        console.log("ACTION_IS: ", action);
+        initializePayment(onSuccess, onClose);
+        console.log("Payment Initialized")
+        actionExecuted =false;
+      }
+    }
+    console.log("SOURCE, ACTION===>", {
+      actionExecuted,
+      source,
+      action,
+      state: location.state,
+    });
+    //}, [currentListing, source, triggerRently]);
+  }, [actionExecuted]);
 
   // const handleClickRent = () => {
   //   navigate("../message");
@@ -76,7 +127,7 @@ const DetailsPage = () => {
       ? triggerRently(true, currentListing)
       : triggerModal(
           "You must be logged in to register for self tour. Login now?",
-          () => navigateLogin,
+          () => () => navigateLogin("tour"),
           () => triggerModal
         );
   };
@@ -130,25 +181,35 @@ const DetailsPage = () => {
               />
               <div className={classes.section1Links}>
                 {/* NOTE */}
-                <button
+                <Button
+                  style={{
+                    backgroundColor: "#0b947e",
+                    color: "white",
+                  }}
                   className={classes.rentNow}
                   onClick={() => {
-                    triggerCheckout();
+                    isAuth
+                      ? initializePayment(onSuccess, onClose)
+                      : triggerModal(
+                          "You must be logged in to initialize payment",
+                          () => () => navigateLogin("rent"),
+                          () => triggerModal
+                        );
                   }}
                 >
                   Rent Now
-                </button>
+                </Button>
                 <Link className={classes.contactAgent} to="/message">
                   Contact Agent
                 </Link>
-                <button
+                <Button
                   className={classes.selfTour}
                   onClick={() => {
                     handleClickTour();
                   }}
                 >
                   Self-Tour
-                </button>
+                </Button>
               </div>
             </div>
           </section>

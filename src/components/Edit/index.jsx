@@ -24,14 +24,16 @@ const Edit = ({ text, actionConfirm, images, setImages }) => {
         </IconButton>
         <Dropdown
           className={classes.dropdown}
-          show={edit}
+          show={adminWriteAccess && user?.isAdmin}
           text={text}
           actionCancel={() => {
+            console.log("DROP_CLICKED");
             setEdit(false);
           }}
           actionConfirm={() => {
+            console.log("DROP_CLICKED");
             setEdit(false);
-            actionConfirm();
+            actionConfirm()();
           }}
           altConfirm={
             images && (

@@ -15,22 +15,16 @@ const Dropdown = ({
   altConfirm,
 }) => {
   return (
-    <CSSTransition
-      mountOnEnter
-      unmountOnExit
-      in={show}
-      timeout={{
-        enter: 200,
-        entering: 200,
-        exit: 200,
-        exiting: 200,
-      }}
-      classNames="dropDown-slide"
-    >
-      <div className={`${classes.dropDown} ${className}`}>
+    <AnimatePresence>
+      <motion.div
+        initial={{ translateY: "-20%" }}
+        animate={{ translateY: 0 }}
+        exit={{ translateY: "-20%" }}
+        className={`${classes.dropDown} ${className}`}
+      >
         <p>{text}</p>
         <div>
-          <Button onClick={actionCancel} type="error">
+          <Button onClick={actionCancel()} type="error">
             cancel
           </Button>
           {!altConfirm ? (
@@ -39,8 +33,8 @@ const Dropdown = ({
             altConfirm
           )}
         </div>
-      </div>
-    </CSSTransition>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
