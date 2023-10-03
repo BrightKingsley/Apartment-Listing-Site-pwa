@@ -35,12 +35,12 @@ export const addListing = (listing, token) => {
 };
 
 export const editListing = (property, listingId, token) => {
-  client.setHeaders({
-    "Content-Type": property.images
-      ? "multipart/form-data"
-      : "application/json",
-    Authorization: "Bearer " + token,
-  });
+  // client.setHeaders({
+  //   "Content-Type": property.images
+  //     ? "multipart/form-data"
+  //     : "application/json",
+  //   Authorization: "Bearer " + token,
+  // });
 
   if (property.images) {
     const imageData = new FormData();
@@ -51,11 +51,22 @@ export const editListing = (property, listingId, token) => {
     return client.patch(`${endpoint}/${listingId}`, imageData);
   }
 
-  return client.patch(`${endpoint}/${listingId}`, property);
+  return client.patch(`${endpoint}/${listingId}`, property, {
+    headers: {
+      "Content-Type": property.images
+        ? "multipart/form-data"
+        : "application/json",
+      Authorization: "Bearer " + token,
+    },
+  });
 };
 
 export const deleteListing = (listingId, token) => {
   console.log("DELETE_TOKEN", token);
-  client.setHeader("Authorization", "Bearer " + token);
-  return client.delete(`${endpoint}/${listingId}`);
+  // client.setHeader("Authorization", "Bearer " + token);
+  return client.delete(`${endpoint}/${listingId}`, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };

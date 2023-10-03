@@ -57,6 +57,8 @@ export default function Signup() {
     e.preventDefault();
     // setLoading(true);
 
+    console.log("SIGNUP!!");
+
     signupHandler(e, { firstname, lastname, email, password });
     // const { user } = response.data;
     //   // setLoading(false);

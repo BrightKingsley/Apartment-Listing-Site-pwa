@@ -16,24 +16,26 @@ const Dropdown = ({
 }) => {
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ translateY: "-20%" }}
-        animate={{ translateY: 0 }}
-        exit={{ translateY: "-20%" }}
-        className={`${classes.dropDown} ${className}`}
-      >
-        <p>{text}</p>
-        <div>
-          <Button onClick={actionCancel()} type="error">
-            cancel
-          </Button>
-          {!altConfirm ? (
-            <Button onClick={actionConfirm}>confirm</Button>
-          ) : (
-            altConfirm
-          )}
-        </div>
-      </motion.div>
+      {show && (
+        <motion.div
+          initial={{ translateY: "-20%" }}
+          animate={{ translateY: 0 }}
+          exit={{ translateY: "-20%" }}
+          className={`${classes.dropDown} ${className}`}
+        >
+          <p>{text}</p>
+          <div>
+            <Button onClick={actionCancel} type="error">
+              cancel
+            </Button>
+            {!altConfirm ? (
+              <Button onClick={actionConfirm}>confirm</Button>
+            ) : (
+              altConfirm
+            )}
+          </div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 };

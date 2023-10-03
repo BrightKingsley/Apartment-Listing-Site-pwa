@@ -27,7 +27,11 @@ export const updateUser = (token, body) => {
 
   console.log("DATA", data, token);
 
-  client.setHeader("Authorization", "Bearer " + token);
+  // client.setHeader("Authorization", "Bearer " + token);
 
-  return client.patch(`${endpoint}`, data);
+  return client.patch(`${endpoint}`, data, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };

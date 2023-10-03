@@ -14,31 +14,28 @@ import {
   NotificationsActiveRounded,
   Restaurant,
 } from "@mui/icons-material";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Notification = () => {
   const { showNotification, notificationMessage } =
     useContext(NotificationContext);
 
   return createPortal(
-    <CSSTransition
-      mountOnEnter
-      unmountOnExit
-      in={showNotification}
-      timeout={{
-        enter: 100,
-        entering: 100,
-        exit: 200,
-        exiting: 200,
-      }}
-      classNames="notification-slide"
-    >
-      <div className={classes.notification}>
-        <span>
-          <NotificationsActiveRounded />
-        </span>
-        <p>{notificationMessage}</p>
-      </div>
-    </CSSTransition>,
+    <AnimatePresence>
+      {showNotification && (
+        <motion.div
+          initial={{ translateX: "100%" }}
+          animate={{ translateX: "0" }}
+          exit={{ translateX: "100%" }}
+          className={classes.notification}
+        >
+          <span>
+            <NotificationsActiveRounded />
+          </span>
+          <p>{notificationMessage}</p>
+        </motion.div>
+      )}
+    </AnimatePresence>,
     document.getElementById("notification")
   );
 };
