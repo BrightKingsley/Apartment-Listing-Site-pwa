@@ -99,12 +99,12 @@ const DetailsPage = () => {
         triggerRently(true, currentListing);
       } else if (action === "rent") {
         initializePayment(onSuccess, onClose);
-        actionExecuted =false;
+        actionExecuted = false;
       }
     }
-    ;
     //}, [currentListing, source, triggerRently]);
-  }, [actionExecuted]);
+    // }, [actionExecuted]);
+  }, []);
 
   // const handleClickRent = () => {
   //   navigate("../message");
