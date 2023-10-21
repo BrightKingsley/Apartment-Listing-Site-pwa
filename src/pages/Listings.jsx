@@ -7,7 +7,7 @@ import Notification from "../components/Notification";
 const Listings = () => {
   return (
     <>
-      <Notification message="this is a notification!" />
+      <Notification message="this is a test notification!" />
       <Outlet />
     </>
   );

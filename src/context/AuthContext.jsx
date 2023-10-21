@@ -92,13 +92,11 @@ export const AuthContextProvider = ({ children }) => {
 
   const signupHandler = async (event, authData) => {
     event.preventDefault();
-    console.log("SIGNUP_HANDLER");
     setAuthLoading(true);
     try {
       const response = await signupUser(authData, token);
       const user = response.data;
 
-      console.log("SIGNUP_USER", user);
 
       if (user.token) {
         setIsAuth(true);
@@ -109,14 +107,13 @@ export const AuthContextProvider = ({ children }) => {
         addTokenToLocalStorage(user.token, user.id);
         setUser(user);
       } else {
-        const { errors } = response.data;
+        const errors = response.data.errors;
         setError(errors);
       }
     } catch (error) {
-      console.error(error)
       setIsAuth(false);
       setAuthLoading(false);
-      setError(error);
+      setError(error.response.data.errors);
     }
   };
 
@@ -137,14 +134,14 @@ export const AuthContextProvider = ({ children }) => {
         user?.isAdmin && setAdminWriteAccess(true);
         triggerNotification("logged in");
       } else {
-        const { errors } = response.data;
+        const errors = response.data.errors;
         user?.isAdmin && setAdminWriteAccess(false);
         setError(errors);
       }
     } catch (error) {
       setIsAuth(false);
       setAuthLoading(false);
-      setError(error);
+      setError(error.response.data.errors);
     }
   };
 

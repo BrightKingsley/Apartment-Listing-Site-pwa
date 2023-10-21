@@ -27,11 +27,9 @@ const Edit = ({ text, actionConfirm, images, setImages }) => {
           show={adminWriteAccess && user?.isAdmin}
           text={text}
           actionCancel={() => {
-            console.log("DROP_CLICKED");
             setEdit(false);
           }}
           actionConfirm={() => {
-            console.log("DROP_CLICKED");
             setEdit(false);
             actionConfirm()();
           }}

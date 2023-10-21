@@ -6,6 +6,8 @@ import classes from "../authStyles.module.css";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -99,7 +101,16 @@ export default function Login() {
             {error?.password && <p>{error.password}</p>}
           </div>
 
-          <button disabled={loading}>login</button>
+          <button disabled={loading}>
+            {loading ? (
+              <CircularProgress
+                variant="soft"
+                sx={{ width: "1rem", height: "1rem", color: "white" }}
+              />
+            ) : (
+              "login"
+            )}
+          </button>
         </form>
       </div>
     </div>

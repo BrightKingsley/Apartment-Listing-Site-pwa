@@ -25,7 +25,6 @@ export const updateUser = (token, body) => {
   body.prevPassword && data.append("prevPassword", body.prevPassword);
   body.newPassword && data.append("newPassword", body.newPassword);
 
-  console.log("DATA", data, token);
 
   // client.setHeader("Authorization", "Bearer " + token);
 

@@ -25,10 +25,27 @@ code {
   scrollbar-width: none; */
 }
 
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-touch-callout: rgba(var(--accent) / 0.2);
+  -webkit-user-drag: none;
+  -webkit-user-drag: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 *::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
   /* display: none; */
+}
+
+button:active {
+  transform: scale(0.9);
+  transition: all 150ms ease;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -90,10 +107,7 @@ code {
   --test: #488074;
   --test-2: #ff6f004d;
   --test-3: #07594b4d;
-
 }
-
-
 
 #map {
   flex: 3;
@@ -117,7 +131,6 @@ code {
   padding: 0.3rem;
   margin: 0;
 }
-
 
 @media (min-width: 640px) {
   .leaflet-popup-content-wrapper .leaflet-popup-content {

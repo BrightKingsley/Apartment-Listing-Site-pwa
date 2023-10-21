@@ -8,13 +8,13 @@ import classes from "../authStyles.module.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { NotificationContext } from "../../../context/NotificationContext";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Signup() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const source = location.state?.source;
-
 
   // const { setUser } = useContext(UserContext);
   const { user, loading, error, setError, signupHandler } =
@@ -36,7 +36,6 @@ export default function Signup() {
 
   useEffect(() => {
     if (user?.id) {
-
       setFirstname("");
       setLastname("");
       setEmail("");
@@ -55,17 +54,7 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
-
-    console.log("SIGNUP!!");
-
     signupHandler(e, { firstname, lastname, email, password });
-    // const { user } = response.data;
-    //   // setLoading(false);
-    // } catch (error) {
-    //   setError(error);
-    //   // setLoading(false);
-    // }
   };
 
   return (
@@ -171,7 +160,9 @@ export default function Signup() {
               {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
             </span>
           </div>
-          <button disabled={loading || !confirmPassword}>signup</button>
+          <button disabled={loading || !confirmPassword}>
+            {loading ? <CircularProgress variant="soft" sx={{width:"1rem", height:"1rem", color:"white"}} /> : "signup"}
+          </button>
         </form>
       </div>
     </div>

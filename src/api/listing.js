@@ -30,7 +30,6 @@ export const addListing = (listing, token) => {
     "Content-Type": "multipart/form-data",
     Authorization: "Bearer " + token,
   };
-  console.log(data);
   return client.post(endpoint, data, { headers });
 };
 
@@ -45,7 +44,6 @@ export const editListing = (property, listingId, token) => {
   if (property.images) {
     const imageData = new FormData();
     property.images.forEach((image) => {
-      console.log("IMAGE_UPLOAD", image);
       imageData.append(`images`, image);
     });
     return client.patch(`${endpoint}/${listingId}`, imageData);
@@ -62,7 +60,6 @@ export const editListing = (property, listingId, token) => {
 };
 
 export const deleteListing = (listingId, token) => {
-  console.log("DELETE_TOKEN", token);
   // client.setHeader("Authorization", "Bearer " + token);
   return client.delete(`${endpoint}/${listingId}`, {
     headers: {

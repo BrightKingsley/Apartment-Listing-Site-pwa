@@ -51,7 +51,7 @@ const Messages = () => {
         ))
       ) : (
         <div className={classes.msgPlaceholder}>
-          <h2>Click on a user to send message</h2>
+          <h2>No messages available</h2>
         </div>
       )}
     </div>

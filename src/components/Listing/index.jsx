@@ -52,7 +52,6 @@ const Listing = ({ listing, setCurrentListing, isAdmin }) => {
             color="default"
             title="delete listing"
             variant="contained"
-            disableElevation
           >
             <DeleteOutlineOutlined />
           </IconButton>

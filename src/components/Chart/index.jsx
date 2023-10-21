@@ -122,8 +122,6 @@ const Chart = () => {
     setWidth(window.innerWidth);
 
     window.addEventListener("resize", (e) => {
-      // console.log(e.target);
-      console.log("WINDOW", windowWidth);
       setWidth(window.innerWidth);
       windowWidth = window.innerWidth;
     });

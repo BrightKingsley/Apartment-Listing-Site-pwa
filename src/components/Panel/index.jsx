@@ -22,7 +22,7 @@ const Panel = ({ children, showPanel, hidePanel }) => {
           </span>
           {children}
         </motion.div>
-      )}{" "}
+      )}
     </AnimatePresence>
   );
 };

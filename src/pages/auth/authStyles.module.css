@@ -134,7 +134,7 @@
 } */
 
 .formWrapper form input:focus {
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
   transition: transform 0.3s ease;
   outline: 2px solid var(--dark-1);
   outline-offset: -4px;

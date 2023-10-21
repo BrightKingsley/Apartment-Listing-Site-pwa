@@ -94,24 +94,15 @@ const DetailsPage = () => {
 
   useEffect(() => {
     if (actionExecuted && currentListing && source) {
-      console.log("REACHED");
       if (action === "tour") {
-        console.log("ACTION_IS: ", action);
         actionExecuted = false;
         triggerRently(true, currentListing);
       } else if (action === "rent") {
-        console.log("ACTION_IS: ", action);
         initializePayment(onSuccess, onClose);
-        console.log("Payment Initialized")
         actionExecuted =false;
       }
     }
-    console.log("SOURCE, ACTION===>", {
-      actionExecuted,
-      source,
-      action,
-      state: location.state,
-    });
+    ;
     //}, [currentListing, source, triggerRently]);
   }, [actionExecuted]);
 

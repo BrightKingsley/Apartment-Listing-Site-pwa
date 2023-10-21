@@ -2,6 +2,7 @@
   width: 100%;
   height: calc(100vh - 61px);
   height: 100vh;
+  max-height: fit-content;
   display: grid;
   grid-template-rows: repeat(16, minmax(auto, 1fr));
   grid-template-columns: repeat(16, minmax(1rem, 1fr));
@@ -138,7 +139,6 @@
   width: 100%;
   padding: 0 0.5rem;
 }
-
 
 .section1Links > a,
 button {
@@ -277,10 +277,9 @@ button {
     /* margin-top: 17rem; */
   }
 
-
-  .section2 p{
+  .section2 p {
     word-break: break-all;
-  } 
+  }
 
   .dragLine {
     /* position: absolute; */

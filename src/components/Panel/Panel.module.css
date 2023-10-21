@@ -9,7 +9,6 @@
   right: 0.3rem;
   /* border: 1px solid rgb(196, 196, 196); */
   z-index: 3;
-  transition: all 1s;
   padding: 1.4rem 0 1rem 1rem;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -28,7 +27,6 @@
 
 .exit:active {
   transform: scale(0.8);
-  transition: transform 0.2s ease-in-out;
 }
 
 .exit svg {

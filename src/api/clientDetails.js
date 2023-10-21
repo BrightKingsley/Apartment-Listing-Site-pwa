@@ -42,7 +42,6 @@ export const addClientDetails = (details, token) => {
     "Content-Type": "multipart/form-data",
     Authorization: "Bearer " + token,
   };
-  console.log(data, details);
   return client.post(endpoint, data, { headers });
 };
 
@@ -57,7 +56,6 @@ export const editClientDetails = (property, clientId, token) => {
   if (property.images) {
     const imageData = new FormData();
     property.images.forEach((image) => {
-      console.log("IMAGE_UPLOAD", image);
       imageData.append(`images`, image);
     });
     return client.patch(`${endpoint}/${clientId}`, imageData);
@@ -74,7 +72,6 @@ export const editClientDetails = (property, clientId, token) => {
 };
 
 export const deleteClientDetails = (clientId, token) => {
-  console.log("DELETE_TOKEN", token);
   // client.setHeader("Authorization", "Bearer " + token);
   return client.delete(`${endpoint}/${clientId}`, {
     headers: {
