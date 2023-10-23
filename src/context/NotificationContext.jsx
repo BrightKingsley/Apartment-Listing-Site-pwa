@@ -20,7 +20,7 @@ export const NotificationContextProvider = ({ children }) => {
       setShowNotification(false);
     }, 3000);
     return () => clearTimeout(timer);
-  }, [showNotification, setShowNotification]);
+  }, [showNotification]);
 
   return (
     <NotificationContext.Provider
