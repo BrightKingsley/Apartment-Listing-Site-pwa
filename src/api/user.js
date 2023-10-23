@@ -2,7 +2,7 @@ import client from "./client";
 
 const endpoint = "/user";
 export const getUser = (userId, token) => {
-  // client.setHeader("Authorization", "Bearer " + token);
+  client.setHeader("Authorization", "Bearer " + token);
   // client.set
   return client.get(`${endpoint}/${userId}`, {
     headers: {
@@ -25,8 +25,7 @@ export const updateUser = (token, body) => {
   body.prevPassword && data.append("prevPassword", body.prevPassword);
   body.newPassword && data.append("newPassword", body.newPassword);
 
-
-  // client.setHeader("Authorization", "Bearer " + token);
+  client.setHeader("Authorization", "Bearer " + token);
 
   return client.patch(`${endpoint}`, data, {
     headers: {

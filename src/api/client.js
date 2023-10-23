@@ -1,7 +1,7 @@
-import axios from "axios";
+import { create } from "apisauce";
 import { WEB_SERVER } from "../constants";
 
-const apiClient = axios.create({
+const apiClient = create({
   baseURL: WEB_SERVER,
   headers: {
     "Content-Type": "application/json",

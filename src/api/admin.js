@@ -9,7 +9,7 @@ export const signupAdmin = (data, token) =>
   });
 
 export const loginAdmin = (data, token) => {
-  // client.setHeader("Authorization", "Bearer " + token);
+  client.setHeader("Authorization", "Bearer " + token);
   return client.post(`${endpoint}/login`, data, {
     headers: {
       Authorization: "Bearer " + token,
@@ -18,7 +18,7 @@ export const loginAdmin = (data, token) => {
 };
 
 export const getAdmin = (adminId, token) => {
-  // client.setHeader("Authorization", "Bearer " + token);
+  client.setHeader("Authorization", "Bearer " + token);
   return client.get(`${endpoint}/${adminId}`, {
     headers: {
       Authorization: "Bearer " + token,
@@ -35,7 +35,7 @@ export const updateAdmin = (token, body) => {
     data.append("image", image);
   });
 
-  // client.setHeader("Authorization", "Bearer " + token);
+  client.setHeader("Authorization", "Bearer " + token);
 
   return client.patch(`${endpoint}`, data, {
     headers: {

@@ -34,12 +34,12 @@ export const addListing = (listing, token) => {
 };
 
 export const editListing = (property, listingId, token) => {
-  // client.setHeaders({
-  //   "Content-Type": property.images
-  //     ? "multipart/form-data"
-  //     : "application/json",
-  //   Authorization: "Bearer " + token,
-  // });
+  client.setHeaders({
+    "Content-Type": property.images
+      ? "multipart/form-data"
+      : "application/json",
+    Authorization: "Bearer " + token,
+  });
 
   if (property.images) {
     const imageData = new FormData();
@@ -60,7 +60,7 @@ export const editListing = (property, listingId, token) => {
 };
 
 export const deleteListing = (listingId, token) => {
-  // client.setHeader("Authorization", "Bearer " + token);
+  client.setHeader("Authorization", "Bearer " + token);
   return client.delete(`${endpoint}/${listingId}`, {
     headers: {
       Authorization: "Bearer " + token,

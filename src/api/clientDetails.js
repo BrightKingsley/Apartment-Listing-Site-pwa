@@ -46,12 +46,12 @@ export const addClientDetails = (details, token) => {
 };
 
 export const editClientDetails = (property, clientId, token) => {
-  // client.setHeaders({
-  //   "Content-Type": property.images
-  //     ? "multipart/form-data"
-  //     : "application/json",
-  //   Authorization: "Bearer " + token,
-  // });
+  client.setHeaders({
+    "Content-Type": property.images
+      ? "multipart/form-data"
+      : "application/json",
+    Authorization: "Bearer " + token,
+  });
 
   if (property.images) {
     const imageData = new FormData();
