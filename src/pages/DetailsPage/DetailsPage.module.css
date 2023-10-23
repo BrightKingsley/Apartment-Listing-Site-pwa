@@ -178,6 +178,10 @@ button {
   width: 100%;
 }
 
+.section3 {
+  padding-bottom: 1rem;
+}
+
 .section3 h2 {
   margin-bottom: 0.8rem;
 }

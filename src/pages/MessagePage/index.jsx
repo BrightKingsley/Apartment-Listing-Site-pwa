@@ -67,19 +67,16 @@ const Message = () => {
                 setConversations((prev) => [...prev, newConversation]);
                 getCurrentConversation(newConversation, token);
               }
-            } catch (error) {
-            }
+            } catch (error) {}
           }
         }
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   });
 
   useEffect(() => {
     socket?.emit("addUser", userId);
-    socket?.on("getUsers", (users) => {
-    });
+    socket?.on("getUsers", (users) => {});
   }, [socket, socket?.id, isAuth, userId]);
 
   useEffect(() => {
@@ -91,17 +88,7 @@ const Message = () => {
         getConversation();
       }
     }
-  }, [
-    token,
-    socket?.id,
-    socket,
-    client,
-    conversations.length,
-    getConversation,
-    isAuth,
-    setReceiver,
-    userId,
-  ]);
+  }, []);
 
   return isAuth ? (
     <main className={classes.message}>
