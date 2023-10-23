@@ -233,7 +233,6 @@ const DetailsPage = () => {
                 <span>
                   <Stairs />
                 </span>
-                login
                 <div>
                   <small>Flooring</small>
                   <small>{currentListing.flooring}</small>
