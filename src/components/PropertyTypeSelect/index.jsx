@@ -34,7 +34,7 @@ const PropertyTypeSelect = ({ setType, type }) => {
         <ApartmentRounded />
         <small>Apartment</small>
       </Button>
-      <Button
+      {/* <Button
         className={classes.propertyType}
         style={{
           backgroundColor: type === "commercial" ? "#07594b" : "#e1fdf8",
@@ -55,7 +55,7 @@ const PropertyTypeSelect = ({ setType, type }) => {
       >
         <LandscapeRounded />
         <small>Land Plot</small>
-      </Button>
+      </Button> */}
     </div>
   );
 };

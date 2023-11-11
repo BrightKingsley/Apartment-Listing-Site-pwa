@@ -43,11 +43,6 @@ code {
   /* display: none; */
 }
 
-button:active {
-  transform: scale(0.9);
-  transition: all 150ms ease;
-}
-
 *::-webkit-scrollbar-thumb {
   background-color: var(--gray-2);
   /* background-color: red; */
@@ -107,6 +102,61 @@ code {
   --test: #488074;
   --test-2: #ff6f004d;
   --test-3: #07594b4d;
+}
+
+button:active {
+  transform: scale(0.9);
+  transition: all 150ms ease;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounceRight {
+  0%,
+  100% {
+    transform: translateX(25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.animate-bounce-right {
+  animation: bounceRight 1s infinite;
 }
 
 #map {

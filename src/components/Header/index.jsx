@@ -48,7 +48,7 @@ const Header = ({ searchbar }) => {
     <header className={classes.header}>
       <div className={classes.headerWrapper}>
         <div className={classes.left}>
-          <span>Raale</span>
+          <Link to={"/"}>Raale</Link>
         </div>
 
         {user?.isAdmin && (

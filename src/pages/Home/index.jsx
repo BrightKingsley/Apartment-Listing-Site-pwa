@@ -230,7 +230,7 @@ const HomePage = () => {
                 <Link
                   onClick={showActivity}
                   to="listings"
-                  className="btn btn-primary"
+                  className="btn btn-primary animate-bounce"
                 >
                   View Listings
                 </Link>
@@ -296,7 +296,12 @@ const HomePage = () => {
               </div>
               <div>
                 <Link to="listings" className="btn-secondary">
-                  View All Properties <img src={ArrowRight} alt="Arrow" />
+                  View All Properties{" "}
+                  <img
+                    className="animate-bounce-right"
+                    src={ArrowRight}
+                    alt="Arrow"
+                  />
                 </Link>
               </div>
             </div>
@@ -427,7 +432,7 @@ const HomePage = () => {
                 <p className="text-white">
                   Everything you need to know when you're looking
                 </p>
-                <Link to="auth/signup" className="btn">
+                <Link to="auth/signup" className="btn animate-pulse">
                   Get Started Now
                 </Link>
               </div>

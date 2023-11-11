@@ -81,7 +81,7 @@ const DetailsPage = () => {
   useEffect(() => {
     document.title = "Raale. || Details";
     loadListing(id);
-  }, [id, loadListing]);
+  }, [id]);
 
   useEffect(() => {
     if (!currentListing || !user) return;
@@ -121,6 +121,17 @@ const DetailsPage = () => {
           () => () => navigateLogin("tour"),
           () => triggerModal
         );
+  };
+
+  const handleClickContact = () => {
+    isAuth
+      ? navigate("/message")
+      : triggerModal(
+          "You must be logged in to contact agent. Login now?",
+          () => () => navigateLogin("tour"),
+          () => triggerModal
+        );
+    // /message
   };
 
   return currentListing ? (
@@ -190,9 +201,17 @@ const DetailsPage = () => {
                 >
                   Rent Now
                 </Button>
-                <Link className={classes.contactAgent} to="/message">
+                {/* <Link className={classes.contactAgent} to="/message">
                   Contact Agent
-                </Link>
+                </Link> */}
+                <Button
+                  className={classes.contactAgent}
+                  onClick={() => {
+                    handleClickContact();
+                  }}
+                >
+                  Contact Agent
+                </Button>
                 <Button
                   className={classes.selfTour}
                   onClick={() => {

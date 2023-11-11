@@ -17,12 +17,15 @@
 }
 
 .left {
-  color: var(--accent);
-  font-weight: bolder;
   display: flex;
   align-items: center;
   justify-content: space-between;
   /* flex: 1; */
+}
+
+.left a {
+  color: var(--accent);
+  font-weight: bolder;
 }
 
 .header span {
